@@ -5,22 +5,36 @@ import 'card_app.dart';
 class PageViewApp extends StatelessWidget {
   final double top;
   final ValueChanged<int> onChanged;
-  const PageViewApp({Key key, this.top, this.onChanged}) : super(key: key);
+  final GestureDragUpdateCallback onPanUpdated;
+  final bool showMenu;
+
+  const PageViewApp(
+      {Key key, this.top, this.onChanged, this.onPanUpdated, this.showMenu})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
+    return AnimatedPositioned(
+      duration: Duration(microseconds: 300),
+      curve: Curves.easeOut,
+      left: 0,
+      right: 0,
       top: top,
       height: MediaQuery.of(context).size.height * .45,
-      width: MediaQuery.of(context).size.width,
-      child: PageView(
-        onPageChanged: onChanged,
-        physics: BouncingScrollPhysics(),
-        children: <Widget>[
-          CardApp(),
-          CardApp(),
-          CardApp(),
-        ],
+      //width: MediaQuery.of(context).size.width,
+      child: GestureDetector(
+        onPanUpdate: onPanUpdated,
+        child: PageView(
+          onPageChanged: onChanged,
+          physics: showMenu
+              ? NeverScrollableScrollPhysics()
+              : BouncingScrollPhysics(),
+          children: <Widget>[
+            CardApp(),
+            CardApp(),
+            CardApp(),
+          ],
+        ),
       ),
     );
   }
