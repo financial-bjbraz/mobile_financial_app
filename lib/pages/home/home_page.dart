@@ -1,5 +1,6 @@
 import 'package:bank_app/pages/widgets/card_app.dart';
 import 'package:bank_app/pages/widgets/my_app_bar.dart';
+import 'package:bank_app/pages/widgets/my_dots_app.dart';
 import 'package:bank_app/pages/widgets/page_view_app.dart';
 import 'package:flutter/material.dart';
 
@@ -38,19 +39,14 @@ class _HomePageState extends State<HomePage> {
           PageViewApp(
             top: _heightScreen * .24,
             onChanged: (index) {
-              _currentIndex = index;
+              setState(() {
+                _currentIndex = index;
+              });
             },
           ),
           Positioned(
-            child: Row(
-              children: <Widget>[
-                Container(
-                    height: 7,
-                    width: 7,
-                    decoration: BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle)),
-              ],
-            ),
+            top: _heightScreen * .70,
+            child: MyDotsApp(currentIndex: _currentIndex),
           ),
         ],
       ),
