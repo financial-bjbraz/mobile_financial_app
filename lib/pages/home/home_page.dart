@@ -1,3 +1,4 @@
+import 'package:bank_app/pages/widgets/menu_app.dart';
 import 'package:bank_app/pages/widgets/my_app_bar.dart';
 import 'package:bank_app/pages/widgets/my_dots_app.dart';
 import 'package:bank_app/pages/widgets/page_view_app.dart';
@@ -41,6 +42,10 @@ class _HomePageState extends State<HomePage> {
                     _showMenu ? _heightScreen * .75 : _heightScreen * .24;
               });
             },
+          ),
+          MenuApp(
+            top: _heightScreen * .205,
+            showMenu: _showMenu,
           ),
           PageViewApp(
             showMenu: _showMenu,
@@ -89,6 +94,7 @@ class _HomePageState extends State<HomePage> {
             },
           ),
           MyDotsApp(
+            showMenu: _showMenu,
             top: _heightScreen * .70,
             currentIndex: _currentIndex,
           ),
