@@ -8,8 +8,12 @@ class SecondCard extends StatefulWidget {
   _SecondCardState createState() => _SecondCardState();
 }
 
-class _SecondCardState extends State<SecondCard> {
+class _SecondCardState extends State<SecondCard>
+    with AutomaticKeepAliveClientMixin {
   bool _showSaldo = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {

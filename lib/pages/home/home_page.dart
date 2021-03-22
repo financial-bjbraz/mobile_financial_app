@@ -1,9 +1,9 @@
-import 'package:bank_app/pages/widgets/bottom_menu.dart';
-import 'package:bank_app/pages/widgets/item_menu_botton.dart';
-import 'package:bank_app/pages/widgets/menu_app.dart';
-import 'package:bank_app/pages/widgets/my_app_bar.dart';
-import 'package:bank_app/pages/widgets/my_dots_app.dart';
-import 'package:bank_app/pages/widgets/page_view_app.dart';
+import 'package:bank_app/pages/widgets/bottom_menu/bottom_menu.dart';
+import 'package:bank_app/pages/widgets/bottom_menu/item_menu_botton.dart';
+import 'package:bank_app/pages/widgets/menu/menu_app.dart';
+import 'package:bank_app/pages/widgets/page_view/my_app_bar.dart';
+import 'package:bank_app/pages/widgets/page_view/my_dots_app.dart';
+import 'package:bank_app/pages/widgets/page_view/page_view_app.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
