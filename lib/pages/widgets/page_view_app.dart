@@ -1,3 +1,5 @@
+import 'package:bank_app/pages/widgets/first_card.dart';
+import 'package:bank_app/pages/widgets/second_cart.dart';
 import 'package:flutter/material.dart';
 
 import 'card_app.dart';
@@ -15,7 +17,7 @@ class PageViewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedPositioned(
-      duration: Duration(microseconds: 170),
+      duration: Duration(microseconds: 250),
       curve: Curves.easeOut,
       left: 0,
       right: 0,
@@ -30,8 +32,12 @@ class PageViewApp extends StatelessWidget {
               ? NeverScrollableScrollPhysics()
               : BouncingScrollPhysics(),
           children: <Widget>[
-            CardApp(),
-            CardApp(),
+            CardApp(
+              child: FirstCard(),
+            ),
+            CardApp(
+              child: SecondCard(),
+            ),
             CardApp(),
           ],
         ),

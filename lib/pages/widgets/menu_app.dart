@@ -115,7 +115,8 @@ class MenuApp extends StatelessWidget {
                             splashColor: Colors.purple[900],
                             child: Text(
                               "SAIR DO APP",
-                              style: TextStyle(fontSize: 12),
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
