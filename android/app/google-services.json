@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "250143939347",
+    "firebase_url": "https://financial-4bae4.firebaseio.com",
+    "project_id": "financial-4bae4",
+    "storage_bucket": "financial-4bae4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250143939347:android:60869663a721d64a2018e6",
+        "android_client_info": {
+          "package_name": "br.com.bjbraz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250143939347-879gk9bjg596q30ksec09rsp1lt197mr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGOLkxCLtAalUEEwv1fhjw6BFFpfmxDDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250143939347-879gk9bjg596q30ksec09rsp1lt197mr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
