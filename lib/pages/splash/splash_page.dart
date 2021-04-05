@@ -1,4 +1,5 @@
 import 'package:bank_app/pages/home/home_page.dart';
+import 'package:bank_app/pages/widgets/login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -22,7 +23,7 @@ class _SplashPageState extends State<SplashPage> {
         PageRouteBuilder(
           pageBuilder: (BuildContext context, Animation animation,
               Animation secondaryAnimation) {
-            return HomePage();
+            return LoginPage();
           },
         ),
       );

@@ -1,4 +1,3 @@
-import 'package:bank_app/pages/home/home_page.dart';
 import 'package:bank_app/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

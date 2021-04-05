@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class MyAppBar extends StatelessWidget {
   final bool showMenu;
   final VoidCallback onTap;
+  final String userName;
 
-  const MyAppBar({Key key, this.showMenu, this.onTap}) : super(key: key);
+  const MyAppBar({Key key, this.showMenu, this.onTap, this.userName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class MyAppBar extends StatelessWidget {
                       width: 10,
                     ),
                     Text(
-                      'Alex',
+                      this.userName,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
