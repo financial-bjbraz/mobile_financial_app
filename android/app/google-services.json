@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:250143939347:android:60869663a721d64a2018e6",
+        "mobilesdk_app_id": "1:250143939347:android:d33cf9d7b04923f12018e6",
         "android_client_info": {
-          "package_name": "br.com.bjbraz"
+          "package_name": "br.com.bjbraz.bank_app"
         }
       },
       "oauth_client": [
