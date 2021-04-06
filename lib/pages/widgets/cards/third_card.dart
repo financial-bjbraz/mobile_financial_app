@@ -1,15 +1,28 @@
+import 'dart:math';
+
+import 'package:bank_app/services/database.dart';
+import 'package:bank_app/services/post.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ThirdCard extends StatefulWidget {
-  const ThirdCard({Key key}) : super(key: key);
+  const ThirdCard({Key key, this.displayName}) : super(key: key);
+  final String displayName;
 
   @override
-  _ThirdCardState createState() => _ThirdCardState();
+  _ThirdCardState createState() => _ThirdCardState(this.displayName);
 }
 
-class _ThirdCardState extends State<ThirdCard> {
+class _ThirdCardState extends State<ThirdCard>
+    with AutomaticKeepAliveClientMixin {
   bool _buttonPressed = false;
+  List<Post> posts = [];
+  Post post;
+  final String displayName;
+  var randon = Random();
+
+  _ThirdCardState(this.displayName);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +74,19 @@ class _ThirdCardState extends State<ThirdCard> {
                 });
               },
               color: Colors.transparent,
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (posts.length > 0) {
+                    post.update();
+                  } else {
+                    post = new Post(
+                        body: randon.nextInt(10000).toString(),
+                        author: displayName);
+                    post.setId(savePost(post));
+                    posts.add(post);
+                  }
+                });
+              },
               elevation: 0,
               disabledElevation: 0,
               highlightElevation: 0,
@@ -76,4 +101,7 @@ class _ThirdCardState extends State<ThirdCard> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

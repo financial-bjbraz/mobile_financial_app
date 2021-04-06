@@ -1,6 +1,7 @@
 import 'package:bank_app/pages/widgets/cards/first_card.dart';
 import 'package:bank_app/pages/widgets/cards/second_cart.dart';
 import 'package:bank_app/pages/widgets/cards/third_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../cards/card_app.dart';
@@ -10,17 +11,26 @@ class PageViewApp extends StatefulWidget {
   final ValueChanged<int> onChanged;
   final GestureDragUpdateCallback onPanUpdated;
   final bool showMenu;
+  final FirebaseUser user;
 
   const PageViewApp(
-      {Key key, this.top, this.onChanged, this.onPanUpdated, this.showMenu})
+      {Key key,
+      this.top,
+      this.onChanged,
+      this.onPanUpdated,
+      this.showMenu,
+      this.user})
       : super(key: key);
 
   @override
-  _PageViewAppState createState() => _PageViewAppState();
+  _PageViewAppState createState() => _PageViewAppState(user);
 }
 
 class _PageViewAppState extends State<PageViewApp> {
   Tween _tween;
+  final FirebaseUser user;
+
+  _PageViewAppState(this.user);
 
   @override
   void initState() {
@@ -68,7 +78,7 @@ class _PageViewAppState extends State<PageViewApp> {
                     child: SecondCard(),
                   ),
                   CardApp(
-                    child: ThirdCard(),
+                    child: ThirdCard(displayName: user.displayName),
                   ),
                 ],
               ),

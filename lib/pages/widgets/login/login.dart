@@ -9,8 +9,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purple[800],
       appBar: AppBar(
-        title: Text("Hello Login"),
+        title: Text("Bank Login"),
       ),
       body: Body(),
     );
@@ -60,7 +61,9 @@ class _BodyState extends State<Body> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => HomePage(userName: user.displayName))),
+                  builder: (context) => HomePage(
+                        user: user,
+                      ))),
         });
   }
 

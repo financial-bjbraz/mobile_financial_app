@@ -3,24 +3,25 @@ import 'package:bank_app/pages/widgets/menu/menu_app.dart';
 import 'package:bank_app/pages/widgets/page_view/my_app_bar.dart';
 import 'package:bank_app/pages/widgets/page_view/my_dots_app.dart';
 import 'package:bank_app/pages/widgets/page_view/page_view_app.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  final String userName;
+  final FirebaseUser user;
 
-  const HomePage({Key key, this.userName}) : super(key: key);
+  const HomePage({Key key, this.user}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState(userName);
+  _HomePageState createState() => _HomePageState(user);
 }
 
 class _HomePageState extends State<HomePage> {
   bool _showMenu;
   int _currentIndex;
   double _yPosition;
-  final String _userName;
+  final FirebaseUser _user;
 
-  _HomePageState(this._userName);
+  _HomePageState(this._user);
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           MyAppBar(
             showMenu: _showMenu,
-            userName: _userName,
+            userName: _user.displayName,
             onTap: () {
               setState(() {
                 _showMenu = !_showMenu;
@@ -65,6 +66,7 @@ class _HomePageState extends State<HomePage> {
             currentIndex: _currentIndex,
           ),
           PageViewApp(
+            user: _user,
             showMenu: _showMenu,
             top: _yPosition,
             onChanged: (index) {
