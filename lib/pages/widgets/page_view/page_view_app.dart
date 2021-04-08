@@ -1,3 +1,4 @@
+import 'package:bank_app/dtos/user.dart';
 import 'package:bank_app/pages/widgets/cards/first_card.dart';
 import 'package:bank_app/pages/widgets/cards/second_cart.dart';
 import 'package:bank_app/pages/widgets/cards/third_card.dart';
@@ -11,7 +12,7 @@ class PageViewApp extends StatefulWidget {
   final ValueChanged<int> onChanged;
   final GestureDragUpdateCallback onPanUpdated;
   final bool showMenu;
-  final FirebaseUser user;
+  final User user;
 
   const PageViewApp(
       {Key key,
@@ -28,7 +29,7 @@ class PageViewApp extends StatefulWidget {
 
 class _PageViewAppState extends State<PageViewApp> {
   Tween _tween;
-  final FirebaseUser user;
+  final User user;
 
   _PageViewAppState(this.user);
 
@@ -78,7 +79,7 @@ class _PageViewAppState extends State<PageViewApp> {
                     child: SecondCard(),
                   ),
                   CardApp(
-                    child: ThirdCard(displayName: user.displayName),
+                    child: ThirdCard(displayName: user.name),
                   ),
                 ],
               ),

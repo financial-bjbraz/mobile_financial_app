@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:bank_app/services/database.dart';
-import 'package:bank_app/services/post.dart';
+import 'package:bank_app/services/postRepository.dart';
+import 'package:bank_app/entities/post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
