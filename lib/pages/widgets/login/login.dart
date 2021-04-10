@@ -197,7 +197,7 @@ class _BodyState extends State<Body> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                   OutlineButton(
-                    onPressed: this.click,
+                    onPressed: this.clickLoginGoogle,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(45)),
                     splashColor: Colors.purple[800],
@@ -225,7 +225,36 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  OutlineButton(
+                    onPressed: this.clickLoginFacebook,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(45)),
+                    splashColor: Colors.purple[800],
+                    borderSide: BorderSide(color: Colors.white),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/fb_logo2.png",
+                            color: Colors.white,
+                            height: 35,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              "Sign in with facebook",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 25),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
               color: Colors.purple[800],
@@ -236,7 +265,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  void click() {
+  void clickLoginGoogle() {
     siginInWithGoogle().then((value) => {
           this.user = value,
           Navigator.pushReplacement(
@@ -248,6 +277,20 @@ class _BodyState extends State<Body> {
             ),
           ),
         });
+  }
+
+  void clickLoginFacebook() {
+    loginFacebook().then((value) => {
+      this.user = value,
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePage(
+            user: new User.n(user: this.user),
+          ),
+        ),
+      ),
+    });
   }
 
   @override
