@@ -266,7 +266,7 @@ class _BodyState extends State<Body> {
                   ),
                 ],
               ),
-              color: Colors.purple[800],
+              color: Color(0x293145),
             ),
           ),
         ],

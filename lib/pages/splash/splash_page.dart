@@ -17,7 +17,7 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> delay() async {
-    return await Future.delayed(Duration(seconds: 2), () {
+    return await Future.delayed(Duration(seconds: 5), () {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-          backgroundColor: Colors.purple[800],
+          backgroundColor: Color(0x293145),
           body: Center(
             child: Image.asset(
               "assets/images/nubank-logo-3.png",
