@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 final databaseReference = FirebaseDatabase.instance.reference();
 
 DatabaseReference saveBalance(Balance balance) {
-  var id = databaseReference.child('balances/').push();
+  var id = databaseReference.child('balances/'+balance.userId).push();
   id.set(balance.toJson());
   return id;
 }

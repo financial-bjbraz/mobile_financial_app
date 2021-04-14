@@ -4,6 +4,7 @@ import 'package:bank_app/pages/home/transactions_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_app/services/auth.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
@@ -24,6 +25,10 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  String MESSAGE_INVALID_EMAIL = "Invalid email";
+  String MESSAGE_INVALID_PASSWORD = "Invalid Password. Password must not be least than 8 chars";
+
+
   TextEditingController passwordController = new TextEditingController();
   TextEditingController mailController = new TextEditingController();
   FirebaseUser user;
@@ -42,11 +47,11 @@ class _BodyState extends State<Body> {
             child: Container(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Bank App Login",
+                AppLocalizations.of(context).title,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 26),
+                    fontSize: 18),
               ),
             ),
           ),
@@ -147,16 +152,20 @@ class _BodyState extends State<Body> {
                         ),
                         RaisedButton(
                           onPressed: () {
-                            auth.createUserWithEmailAndPassword(
-                                email: mailController.text,
-                                password: passwordController.text);
-                            Navigator.of(context)
-                                .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => TransactionsPage(
-                                          user: new User(
-                                              name: mailController.text,
-                                              email: mailController.text),
-                                        )));
+
+                            if(validate()){
+                              auth.createUserWithEmailAndPassword(
+                                  email: mailController.text,
+                                  password: passwordController.text);
+                              Navigator.of(context)
+                                  .pushReplacement(MaterialPageRoute(
+                                  builder: (context) => TransactionsPage(
+                                    user: new User(
+                                        name: mailController.text,
+                                        email: mailController.text),
+                                  )));
+                            }
+
                           },
                           color: Colors.purple[800],
                           highlightColor: Colors.transparent,
@@ -239,7 +248,7 @@ class _BodyState extends State<Body> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            "assets/images/fb_logo2.png",
+                            "assets/images/fb_logo5.png",
                             color: Colors.white,
                             height: 35,
                           ),
@@ -266,6 +275,7 @@ class _BodyState extends State<Body> {
   }
 
   void clickLoginGoogle() {
+
     siginInWithGoogle().then((value) => {
           this.user = value,
           Navigator.pushReplacement(
@@ -280,6 +290,7 @@ class _BodyState extends State<Body> {
   }
 
   void clickLoginFacebook() {
+
     loginFacebook().then((value) => {
       this.user = value,
       Navigator.pushReplacement(
@@ -302,10 +313,33 @@ class _BodyState extends State<Body> {
   }
 
   bool validate() {
+    var email = mailController.text;
+    var password =  passwordController.text;
+    var message  = "";
+
+    if(email.isEmpty){
+      showMessage(MESSAGE_INVALID_EMAIL);
+      return false;
+    }
+
+    if(password.isEmpty){
+      showMessage(MESSAGE_INVALID_PASSWORD);
+      return false;
+    }
+
+    if(password.length < 8){
+      showMessage(MESSAGE_INVALID_PASSWORD);
+      return false;
+    }
+
+    return true;
+  }
+
+  void showMessage(String message){
     final snackBar = SnackBar(
-      content: Text('Yay! A SnackBar!'),
+      content: Text(message),
       action: SnackBarAction(
-        label: 'Undo',
+        label: 'Ok',
         onPressed: () {
           // Some code to undo the change.
         },
@@ -313,7 +347,5 @@ class _BodyState extends State<Body> {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-    return false;
   }
 }
