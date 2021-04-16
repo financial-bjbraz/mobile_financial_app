@@ -1,17 +1,18 @@
 import 'dart:math';
 
+import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/services/user_repository.dart';
 import 'package:bank_app/services/postRepository.dart';
 import 'package:bank_app/entities/post.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ThirdCard extends StatefulWidget {
-  const ThirdCard({Key key, this.displayName}) : super(key: key);
-  final String displayName;
+  const ThirdCard({Key key, this.user}) : super(key: key);
+  final User user;
 
   @override
-  _ThirdCardState createState() => _ThirdCardState(this.displayName);
+  _ThirdCardState createState() => _ThirdCardState(this.user);
 }
 
 class _ThirdCardState extends State<ThirdCard>
@@ -19,10 +20,10 @@ class _ThirdCardState extends State<ThirdCard>
   bool _buttonPressed = false;
   List<Post> posts = [];
   Post post;
-  final String displayName;
+  final User user;
   var randon = Random();
 
-  _ThirdCardState(this.displayName);
+  _ThirdCardState(this.user);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class _ThirdCardState extends State<ThirdCard>
             ),
             child: RaisedButton(
               child: Text(
-                "ATIVE O SEU REWARDS",
+                "ATIVE O SEU REWARDS " + (user.getBalance().toString()),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               ),
               textColor: _buttonPressed ? Colors.white : Colors.purple[800],
@@ -76,15 +77,19 @@ class _ThirdCardState extends State<ThirdCard>
               color: Colors.transparent,
               onPressed: () {
                 setState(() {
-                  if (posts.length > 0) {
-                    post.update();
-                  } else {
-                    post = new Post(
-                        body: randon.nextInt(10000).toString(),
-                        author: displayName);
-                    post.setId(savePost(post));
-                    posts.add(post);
-                  }
+
+                  user.setBalance(1);
+                  updateUser(user);
+
+                  // if (posts.length > 0) {
+                  //   post.update();
+                  // } else {
+                  //   post = new Post(
+                  //       body: randon.nextInt(10000).toString(),
+                  //       author: user.name);
+                  //   post.setId(savePost(post));
+                  //   posts.add(post);
+                  // }
                 });
               },
               elevation: 0,

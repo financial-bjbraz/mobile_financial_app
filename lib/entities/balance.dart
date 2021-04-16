@@ -1,4 +1,5 @@
-import 'package:bank_app/services/balanceRepository.dart';
+import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/services/user_repository.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class Balance {
@@ -6,22 +7,8 @@ class Balance {
   String lasUpdatedTime;
   double balance;
   String userId;
-  DatabaseReference _id;
 
   Balance({this.user, this.balance, this.userId});
-
-  void setId(DatabaseReference id) {
-    this._id = id;
-  }
-
-  DatabaseReference getId() {
-    return this._id;
-  }
-
-  void update() {
-    lasUpdatedTime = DateTime.now().toString();
-    updateBalance(this, this._id);
-  }
 
   Map<String, dynamic> toJson() {
     final DateTime now = DateTime.now();

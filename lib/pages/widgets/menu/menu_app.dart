@@ -1,4 +1,5 @@
 import 'package:bank_app/pages/widgets/menu/item_menu.dart';
+import 'package:bank_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class MenuApp extends StatelessWidget {
@@ -110,7 +111,11 @@ class MenuApp extends StatelessWidget {
                             disabledElevation: 0,
                             highlightElevation: 0,
                             hoverElevation: 0,
-                            onPressed: () {},
+                            onPressed: () {
+
+                              logout(context);
+
+                            },
                             focusElevation: 0,
                             splashColor: Colors.purple[900],
                             child: Text(

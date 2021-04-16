@@ -1,9 +1,8 @@
-import 'package:bank_app/dtos/user.dart';
+import 'package:bank_app/entities/user.dart';
 import 'package:bank_app/pages/widgets/bottom_menu/bottom_menu.dart';
 import 'package:bank_app/pages/widgets/menu/menu_app.dart';
 import 'package:bank_app/pages/widgets/page_view/my_app_bar.dart';
 import 'package:bank_app/pages/widgets/page_view/my_dots_app.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TransactionsPage extends StatefulWidget {

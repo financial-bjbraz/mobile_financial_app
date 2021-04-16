@@ -1,4 +1,4 @@
-import 'package:bank_app/dtos/user.dart';
+import 'package:bank_app/entities/user.dart';
 import 'package:bank_app/pages/home/home_page.dart';
 import 'package:bank_app/pages/home/transactions_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -282,7 +282,7 @@ class _BodyState extends State<Body> {
             context,
             MaterialPageRoute(
               builder: (context) => HomePage(
-                user: new User.n(user: this.user),
+                user: new User.n(firebaseUser: this.user),
               ),
             ),
           ),
@@ -297,7 +297,7 @@ class _BodyState extends State<Body> {
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
-            user: new User.n(user: this.user),
+            user: new User.n(firebaseUser: this.user),
           ),
         ),
       ),

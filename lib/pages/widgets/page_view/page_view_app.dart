@@ -1,10 +1,9 @@
-import 'package:bank_app/dtos/user.dart';
+import 'package:bank_app/entities/user.dart';
 import 'package:bank_app/pages/widgets/cards/first_card.dart';
 import 'package:bank_app/pages/widgets/cards/second_cart.dart';
 import 'package:bank_app/pages/widgets/cards/third_card.dart';
 import 'package:bank_app/pages/widgets/detail/account_statements_detail.dart';
 import 'package:bank_app/pages/widgets/detail/card_statements_detail.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../cards/card_app.dart';
@@ -83,7 +82,7 @@ class _PageViewAppState extends State<PageViewApp> {
                     detailChild: AccountStatementsDetail(),
                   ),
                   CardApp(
-                    child: ThirdCard(displayName: user.name),
+                    child: ThirdCard(user: user),
                     detailChild: null,
                   ),
                 ],

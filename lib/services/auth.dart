@@ -1,4 +1,6 @@
+import 'package:bank_app/pages/widgets/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -68,4 +70,13 @@ Future<FirebaseUser> siginInWithGoogle() async {
   return user;
 }
 
-Future<void> logout() => _auth.signOut();
+Future<void> logout(BuildContext context) {
+  _auth.signOut().then((value) => {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ),
+    )
+  });
+}
