@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "616349335993-mm3r27suo76v37i4c5j4bhgif1oa5bcq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.incentivar",
+            "certificate_hash": "8b3c847cb1de9e02a85b46354178fce7d921b111"
+          }
+        },
+        {
           "client_id": "616349335993-pcdpns2bqk4kq693cfdnc0s7c5mp48oo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
