@@ -84,6 +84,14 @@
           }
         },
         {
+          "client_id": "616349335993-7i1vqd03vt29eut6cbu1oq4jhdf2pps8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.bjbraz.bank_app",
+            "certificate_hash": "8b3c847cb1de9e02a85b46354178fce7d921b111"
+          }
+        },
+        {
           "client_id": "616349335993-9k2d7g2rut4fmt4c3t3vhvib3j7i91gv.apps.googleusercontent.com",
           "client_type": 3
         }
