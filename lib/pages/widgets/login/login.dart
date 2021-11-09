@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:bank_app/services/auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
 
@@ -13,7 +14,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        backgroundColor: Colors.purple[800],
+        backgroundColor:  const Color(0x293145),
         body: Body(),
       ),
     );
@@ -277,6 +278,8 @@ class _BodyState extends State<Body> {
   void clickLoginGoogle() {
 
     siginInWithGoogle().then((value) => {
+
+
           this.user = value,
           Navigator.pushReplacement(
             context,

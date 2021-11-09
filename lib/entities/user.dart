@@ -41,12 +41,18 @@ class User {
     this.state = "SP";
     this.city = "São Paulo";
     this.neighborhood = "JD Santa Izabel";
-    this.photo = "";
-    this.geolocalization = "";
+    this.photo = "a photo";
+    this.geolocalization = " a geo";
     createNewUserIfNotExists();
   }
 
   double getBalance() {
+
+    if(_balance == null){
+      _balance = new Balance(balance: 0, userId: firebaseUser.uid);
+      setObject(_balance);
+    }
+
     return _balance.balance;
   }
 
@@ -70,11 +76,23 @@ class User {
   }
 
   void createNewUserIfNotExists() {
-    if (this.firebaseUser != null) {
+    User u = null;
+
+    if(this.firebaseUser != null) {
+      searchUser(this.firebaseUser.uid).then((value) =>
+        {
+          u = value,
+          _balance = new Balance(balance: 0, userId: firebaseUser.uid),
+          setObject(_balance),
+        }
+      );
+
+    }else{
       _balance = new Balance(balance: 0, userId: firebaseUser.uid);
       setObject(_balance);
       saveUser(this);
     }
+
   }
 
 

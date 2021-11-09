@@ -9,7 +9,7 @@ void main() {
     SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.purple[800],
+      systemNavigationBarColor:  const Color(0x293145),
     ),
   );
 

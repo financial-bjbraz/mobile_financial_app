@@ -5,6 +5,7 @@ import 'package:bank_app/pages/widgets/page_view/my_app_bar.dart';
 import 'package:bank_app/pages/widgets/page_view/my_dots_app.dart';
 import 'package:bank_app/pages/widgets/page_view/page_view_app.dart';
 import 'package:flutter/material.dart';
+import 'package:bank_app/services/user_repository.dart';
 
 class HomePage extends StatefulWidget {
   final User user;
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   bool _showMenu;
   int _currentIndex;
   double _yPosition;
-  final User _user;
+  User _user;
 
   _HomePageState(this._user);
 
@@ -28,10 +29,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _showMenu = false;
     _currentIndex = 0;
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     double _heightScreen = MediaQuery.of(context).size.height;
 
     if (_yPosition == null) {
