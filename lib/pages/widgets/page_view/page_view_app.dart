@@ -1,7 +1,7 @@
 import 'package:bank_app/entities/user.dart';
 import 'package:bank_app/pages/widgets/cards/first_card.dart';
 import 'package:bank_app/pages/widgets/cards/second_cart.dart';
-import 'package:bank_app/pages/widgets/cards/third_card.dart';
+import 'package:bank_app/pages/widgets/cards/rewards.dart';
 import 'package:bank_app/pages/widgets/detail/account_statements_detail.dart';
 import 'package:bank_app/pages/widgets/detail/card_statements_detail.dart';
 import 'package:flutter/material.dart';
