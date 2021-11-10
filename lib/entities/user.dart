@@ -47,7 +47,7 @@ class User {
     createNewUserIfNotExists();
   }
 
-  double getBalance() {
+  num getBalance() {
 
     if(balances == null){
       final DateTime now = DateTime.now();
@@ -74,7 +74,7 @@ class User {
       searchUser(this.firebaseUser.uid).then((value) =>
         {
 
-          if(u != null){
+          if(value != null){
             u = value,
             balances = u.balances,
           }else{
