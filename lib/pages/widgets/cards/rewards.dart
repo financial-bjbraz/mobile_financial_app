@@ -1,21 +1,20 @@
 import 'dart:math';
 
+import 'package:bank_app/entities/post.dart';
 import 'package:bank_app/entities/user.dart';
 import 'package:bank_app/services/user_repository.dart';
-import 'package:bank_app/services/postRepository.dart';
-import 'package:bank_app/entities/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ThirdCard extends StatefulWidget {
-  const ThirdCard({Key key, this.user}) : super(key: key);
+class Rewards extends StatefulWidget {
+  const Rewards({Key key, this.user}) : super(key: key);
   final User user;
 
   @override
-  _ThirdCardState createState() => _ThirdCardState(this.user);
+  _RewardsState createState() => _RewardsState(this.user);
 }
 
-class _ThirdCardState extends State<ThirdCard>
+class _RewardsState extends State<Rewards>
     with AutomaticKeepAliveClientMixin {
   bool _buttonPressed = false;
   List<Post> posts = [];
@@ -23,7 +22,7 @@ class _ThirdCardState extends State<ThirdCard>
   final User user;
   var randon = Random();
 
-  _ThirdCardState(this.user);
+  _RewardsState(this.user);
 
   @override
   Widget build(BuildContext context) {

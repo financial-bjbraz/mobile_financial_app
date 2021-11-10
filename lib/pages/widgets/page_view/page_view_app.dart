@@ -1,6 +1,6 @@
 import 'package:bank_app/entities/user.dart';
-import 'package:bank_app/pages/widgets/cards/first_card.dart';
-import 'package:bank_app/pages/widgets/cards/second_cart.dart';
+import 'package:bank_app/pages/widgets/cards/credit_card.dart';
+import 'package:bank_app/pages/widgets/cards/account_info.dart';
 import 'package:bank_app/pages/widgets/cards/rewards.dart';
 import 'package:bank_app/pages/widgets/detail/account_statements_detail.dart';
 import 'package:bank_app/pages/widgets/detail/card_statements_detail.dart';
@@ -74,15 +74,15 @@ class _PageViewAppState extends State<PageViewApp> {
                     : BouncingScrollPhysics(),
                 children: <Widget>[
                   CardApp(
-                    child: FirstCard(),
+                    child: CreditCard(),
                     detailChild: CardStatementsDetail(),
                   ),
                   CardApp(
-                    child: SecondCard(),
+                    child: AccountInfo(),
                     detailChild: AccountStatementsDetail(),
                   ),
                   CardApp(
-                    child: ThirdCard(user: user),
+                    child: Rewards(user: user),
                     detailChild: null,
                   ),
                 ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SecondCard extends StatefulWidget {
-  const SecondCard({Key key}) : super(key: key);
+class AccountInfo extends StatefulWidget {
+  const AccountInfo({Key key}) : super(key: key);
 
   @override
-  _SecondCardState createState() => _SecondCardState();
+  _AccountInfoState createState() => _AccountInfoState();
 }
 
-class _SecondCardState extends State<SecondCard>
+class _AccountInfoState extends State<AccountInfo>
     with AutomaticKeepAliveClientMixin {
   bool _showSaldo = false;
 

@@ -130,7 +130,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "1 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
@@ -157,7 +157,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "2 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
@@ -184,7 +184,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "3 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
@@ -211,7 +211,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "4 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
@@ -238,7 +238,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "5 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
