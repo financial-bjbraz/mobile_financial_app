@@ -6,72 +6,56 @@ final databaseReference = FirebaseDatabase.instance.reference();
 
 User saveUser(User user) {
   user = _saveUser(user);
-  // user.setObject(_saveBalance(user.getObject()));
   return user;
 }
 
 User _saveUser(User user) {
-  exists(user.userId).then((value) => {
-        if (!value)
-          {
-            // databaseReference
-            //     .child('users/')
-            //     .child(user.userId)
-            //     .child('balances')
-            //     .update(user.getObject().toJson()),
-            // databaseReference.child('users/').child(user.userId).set(user.toJson()),
-            updateUser(user)
-
-          }
-        else
-          {
-            searchUser(user.userId).then((value) => user = value),
-          }
-      });
-
+  updateUser(user);
   return user;
 }
 
 Balance _saveBalance(Balance balance) {
-  exists(balance.userId).then((value) => {
-        if (!value)
-          {
-            databaseReference.child('users/').child(balance.userId).set(value),
-            databaseReference
-                .child('users/')
-                .child(balance.userId)
-                .child('balances')
-                .set(balance.toJson())
-          }
-        else
-          {
-            searchBalance(balance.userId).then((value) => balance = value),
-          }
-      });
+  exists(balance.userid).then((value) =>
+  {
+    if (!value)
+      {
+        databaseReference.child('users/').child(balance.userid).set(value),
+        databaseReference
+            .child('users/')
+            .child(balance.userid)
+            .child('balances')
+            .set(balance.toJson())
+      }
+    else
+      {
+        searchBalance(balance.userid).then((value) => balance = value),
+      }
+  });
 
   return balance;
 }
 
 Future<bool> exists(String userId) async {
   DataSnapshot dataSnapshot =
-      await databaseReference.child('users/' + userId + '/balances').once();
+  await databaseReference.child('users/' + userId + '/balances').once();
   return dataSnapshot.value != null;
 }
 
 void updateUser(User user) {
-  user.getObject().lasUpdatedTime = DateTime.now().toString();
+  user.balances.lastUpdate = DateTime.now().toString();
   databaseReference.child('users/' + user.userId).update(user.toJson());
-  databaseReference.child('users/' + user.userId + '/balances').update(user.getObject().toJson());
+  //databaseReference.child('users/' + user.userId + '/balances').update(user.balances.toJson());
 }
 
 Future<Balance> searchBalance(String userId) async {
   DataSnapshot dataSnapshot =
-      await databaseReference.child('users/' + userId + '/balances').once();
+  await databaseReference.child('users/' + userId + '/balances').once();
   Balance balance;
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      balance = createBalance(value);
+      final DateTime now = DateTime.now();
+      balance = new Balance(balance: 0, lastUpdate: now.toString(), userid: '');
     });
   }
 
@@ -80,16 +64,65 @@ Future<Balance> searchBalance(String userId) async {
 
 Future<User> searchUser(String userId) async {
   DataSnapshot dataSnapshot =
-      await databaseReference.child('users/' + userId).once();
+  await databaseReference.child('users/' + userId).once();
   User user;
+
+  Map<String, dynamic> attributes = {
+    'name': '',
+    'cpf': '',
+    'email': '',
+    'mobile_number': '',
+    'address': '',
+    'address1': '',
+    'address2': '',
+    'state': '',
+    'city': '',
+    'neighborhood': '',
+    'photo': '',
+    'geo_localization': '',
+    'lastUpdate': '',
+    'userId': '',
+    'balances': {
+      'balance': 0,
+      'lastUpdate': '',
+      'userid': ''
+    }
+  };
+
+  Map<dynamic, dynamic> attributesBalance = {
+    'user': '',
+    'userid': '',
+    'balance': 0.0,
+    'lastUpdate': ''
+  };
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, record) {
-      user = createUser(record);
+
+      if (key == 'balances') {
+          attributesBalance = record;
+      } else {
+        attributes[key] = record;
+      }
     });
   }
 
-  return user;
-}
 
+  return new User.recovered
+  (
+      name: attributes['name'],
+      email: attributes['email'],
+      mobileNumber: attributes['mobile_number'],
+      userId: attributes['userId'],
+      cpf: attributes['cpf'],
+      address: attributes['address'],
+      address1: attributes['address1'],
+      state: attributes['state'],
+      city: attributes['city'],
+      neighborhood: attributes['neighborhood'],
+      photo: attributes['photo'],
+      geolocalization: attributes['geo_localization'],
+      balances: Balance.recovered(balance: attributesBalance['balance'], lastUpdate: attributesBalance['lastUpdate'], userid: attributesBalance['userid']));
+
+}
 

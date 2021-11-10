@@ -18,14 +18,15 @@ class User {
   String photo;
   String geolocalization;
 
-  Balance _balance;
+  Balance balances;
   FirebaseUser firebaseUser;
 
   User({this.name, this.email}) {
     createNewUserIfNotExists();
   }
 
-  User.recovered({this.name, this.email});
+  User.recovered({this.name, this.email, this.mobileNumber, this.userId, this.cpf, this.address, this.address1, this.state, this.city,
+  this.neighborhood, this.photo, this.geolocalization, this.balances});
 
   User.n({this.firebaseUser}) {
 
@@ -48,24 +49,15 @@ class User {
 
   double getBalance() {
 
-    if(_balance == null){
-      _balance = new Balance(balance: 0, userId: firebaseUser.uid);
-      setObject(_balance);
+    if(balances == null){
+      final DateTime now = DateTime.now();
+      balances = new Balance(balance: 0, lastUpdate: now.toString(), userid: firebaseUser.uid);
     }
-
-    return _balance.balance;
+    return balances.balance;
   }
 
-  void setBalance(double d) {
-    _balance.balance += d;
-  }
-
-  Balance getObject() {
-    return _balance;
-  }
-
-  void setObject(Balance b) {
-    _balance = b;
+  void setBalances(double d) {
+    balances.balance += d;
   }
 
   String getName() {
@@ -77,20 +69,21 @@ class User {
 
   void createNewUserIfNotExists() {
     User u = null;
-
+    final DateTime now = DateTime.now();
     if(this.firebaseUser != null) {
       searchUser(this.firebaseUser.uid).then((value) =>
         {
-          u = value,
-          _balance = new Balance(balance: 0, userId: firebaseUser.uid),
-          setObject(_balance),
+
+          if(u != null){
+            u = value,
+            balances = u.balances,
+          }else{
+            balances = new Balance(balance: 0.0, lastUpdate: now.toString(), userid: firebaseUser.uid),
+            saveUser(this),
+          }
         }
       );
 
-    }else{
-      _balance = new Balance(balance: 0, userId: firebaseUser.uid);
-      setObject(_balance);
-      saveUser(this);
     }
 
   }
@@ -108,18 +101,26 @@ class User {
       'address2': this.address2,
       'state': this.state,
       'city': this.city,
+      'userId': this.city,
       'neighborhood': this.neighborhood,
       'photo': this.photo,
       'geo_localization': this.geolocalization,
-      'lastUpdate': now.toString()
+      'lastUpdate': now.toString(),
+      'balances':{
+        'balance':this.balances.balance,
+        'userid':this.balances.userid,
+        'lastUpdate':now.toString()
+      }
     };
   }
 }
 
 
 User createUser(record) {
+  final DateTime now = DateTime.now();
   Map<String, dynamic> attributes = {
     'name': '',
+    'cpf': '',
     'email':'',
     'mobile_number': '',
     'address': '',
@@ -130,8 +131,17 @@ User createUser(record) {
     'neighborhood': '',
     'photo':'',
     'geo_localization': '',
-    'lastUpdate':''
+    'lastUpdate':'',
+    'userId':'',
+    'balances':{
+      'balance':0,
+      'userid':'',
+      'lastUpdate':now.toString()
+    }
   };
-  record.forEach((key, value) => {attributes[key] = value});
+  record.forEach((key, value) => {
+    attributes[key] = value,
+  });
+
   return new User.recovered(name: attributes['name'], email: attributes['email']);
 }

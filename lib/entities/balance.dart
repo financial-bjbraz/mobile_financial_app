@@ -4,34 +4,23 @@ import 'package:firebase_database/firebase_database.dart';
 
 class Balance {
   String user;
-  String lasUpdatedTime;
-  double balance;
-  String userId;
+  String lastUpdate;
+  num balance;
+  String userid;
 
-  Balance({this.user, this.balance, this.userId});
+  Balance({this.balance, this.lastUpdate, this.userid});
+
+  Balance.recovered({this.balance, this.lastUpdate, this.userid});
 
   Map<String, dynamic> toJson() {
     final DateTime now = DateTime.now();
 
     return {
       'user': this.user,
-      'userid': this.userId,
+      'userid': this.userid,
       'balance': this.balance,
       'lastUpdate': now.toString()
     };
   }
 }
 
-Balance createBalance(record) {
-  Map<String, dynamic> attributes = {
-    'user': '',
-    'userid': '',
-    'balance': 0,
-    'lastUpdate': ''
-  };
-  record.forEach((key, value) => {attributes[key] = value});
-  Balance balance =
-      new Balance(user: attributes['user'], balance: attributes['balance']);
-
-  return balance;
-}

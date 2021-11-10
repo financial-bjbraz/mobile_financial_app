@@ -77,8 +77,7 @@ class _ThirdCardState extends State<ThirdCard>
               color: Colors.transparent,
               onPressed: () {
                 setState(() {
-
-                  user.setBalance(1);
+                  user.setBalances(1.0);
                   updateUser(user);
 
                   // if (posts.length > 0) {

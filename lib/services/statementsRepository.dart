@@ -21,7 +21,8 @@ Future<List<Balance>> getAll(String userId) async {
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      Balance balance = createBalance(value);
+      final DateTime now = DateTime.now();
+      Balance balance = new Balance(balance: 0, lastUpdate: now.toString(), userid: '');
       balances.add(balance);
     });
   }
