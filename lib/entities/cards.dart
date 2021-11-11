@@ -14,7 +14,7 @@ class Cards {
   String cardName;
   num cardNumber;
   String cardValidity;
-  FirebaseUser firebaseUser;
+  User firebaseUser;
 
   Cards.recovered({
     this.cardBalance,

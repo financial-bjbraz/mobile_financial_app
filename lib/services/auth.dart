@@ -7,11 +7,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSigin = GoogleSignIn();
 final fb = FacebookLogin();
-Stream<FirebaseUser> get currentUser => _auth.onAuthStateChanged;
-Future<AuthResult> signInWithCredential(AuthCredential credential) => _auth.signInWithCredential(credential);
+Stream<User> get currentUser => _auth.authStateChanges(); //_auth.onAuthStateChanged;
+Future<UserCredential> signInWithCredential(AuthCredential credential) => _auth.signInWithCredential(credential);
 
 
-Future<FirebaseUser> loginFacebook() async {
+Future<User> loginFacebook() async {
   print('Starting facebook login');
 
   final res = await fb.logIn(
@@ -30,7 +30,8 @@ Future<FirebaseUser> loginFacebook() async {
       final FacebookAccessToken fbToken = res.accessToken;
 
       //Convert to Auth Credential
-      final AuthCredential credential = FacebookAuthProvider.getCredential(accessToken: fbToken.token);
+      final AuthCredential credential = FacebookAuthProvider.credential(fbToken.token);
+
 
       //User Credential to Sigin in with Firebase
       final result = await _auth.signInWithCredential(credential);
@@ -50,21 +51,21 @@ Future<FirebaseUser> loginFacebook() async {
 
 }
 
-Future<FirebaseUser> siginInWithGoogle() async {
+Future<User> siginInWithGoogle() async {
   final GoogleSignInAccount googleSignInAccount = await googleSigin.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
       await googleSignInAccount.authentication;
-  final AuthCredential credential = GoogleAuthProvider.getCredential(
+  final AuthCredential credential = GoogleAuthProvider.credential(
       idToken: googleSignInAuthentication.idToken,
       accessToken: googleSignInAuthentication.accessToken);
 
-  final AuthResult _authResult = await _auth.signInWithCredential(credential);
-  final FirebaseUser user = _authResult.user;
+  final UserCredential _authResult = await _auth.signInWithCredential(credential);
+  final User user = _authResult.user;
 
   assert(!user.isAnonymous);
   assert(await user.getIdToken() != null);
 
-  final FirebaseUser currentUser = await _auth.currentUser();
+  final User currentUser = await _auth.currentUser;
   assert(currentUser.uid == user.uid);
 
   return user;

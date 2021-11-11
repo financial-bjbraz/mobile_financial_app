@@ -1,7 +1,8 @@
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/pages/home/home_page.dart';
 import 'package:bank_app/pages/home/transactions_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_app/services/auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -12,6 +13,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return Container(
       child: Scaffold(
         backgroundColor:  const Color(0x293145),
@@ -32,7 +34,7 @@ class _BodyState extends State<Body> {
 
   TextEditingController passwordController = new TextEditingController();
   TextEditingController mailController = new TextEditingController();
-  FirebaseUser user;
+  User user;
   bool _buttonPressed = false;
   String _email, _password;
   final auth = FirebaseAuth.instance;
@@ -118,7 +120,7 @@ class _BodyState extends State<Body> {
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(
                                       builder: (context) => TransactionsPage(
-                                            user: new User(
+                                            user: new SimpleUser(
                                                 name: mailController.text,
                                                 email: mailController.text),
                                           )));
@@ -161,7 +163,7 @@ class _BodyState extends State<Body> {
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(
                                   builder: (context) => TransactionsPage(
-                                    user: new User(
+                                    user: new SimpleUser(
                                         name: mailController.text,
                                         email: mailController.text),
                                   )));
@@ -285,7 +287,7 @@ class _BodyState extends State<Body> {
             context,
             MaterialPageRoute(
               builder: (context) => HomePage(
-                user: new User.n(firebaseUser: this.user),
+                user: new SimpleUser.n(firebaseUser: this.user),
               ),
             ),
           ),
@@ -300,7 +302,7 @@ class _BodyState extends State<Body> {
         context,
         MaterialPageRoute(
           builder: (context) => HomePage(
-            user: new User.n(firebaseUser: this.user),
+            user: new SimpleUser.n(firebaseUser: this.user),
           ),
         ),
       ),

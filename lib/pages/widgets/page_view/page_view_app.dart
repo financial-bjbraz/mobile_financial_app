@@ -1,4 +1,4 @@
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/pages/widgets/cards/credit_card.dart';
 import 'package:bank_app/pages/widgets/cards/account_info.dart';
 import 'package:bank_app/pages/widgets/cards/rewards.dart';
@@ -13,7 +13,7 @@ class PageViewApp extends StatefulWidget {
   final ValueChanged<int> onChanged;
   final GestureDragUpdateCallback onPanUpdated;
   final bool showMenu;
-  final User user;
+  final SimpleUser user;
 
   const PageViewApp(
       {Key key,
@@ -30,7 +30,7 @@ class PageViewApp extends StatefulWidget {
 
 class _PageViewAppState extends State<PageViewApp> {
   Tween _tween;
-  final User user;
+  final SimpleUser user;
 
   _PageViewAppState(this.user);
 

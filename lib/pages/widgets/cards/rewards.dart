@@ -1,14 +1,14 @@
 import 'dart:math';
 
 import 'package:bank_app/entities/post.dart';
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/services/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Rewards extends StatefulWidget {
   const Rewards({Key key, this.user}) : super(key: key);
-  final User user;
+  final SimpleUser user;
 
   @override
   _RewardsState createState() => _RewardsState(this.user);
@@ -19,7 +19,7 @@ class _RewardsState extends State<Rewards>
   bool _buttonPressed = false;
   List<Post> posts = [];
   Post post;
-  final User user;
+  final SimpleUser user;
   var randon = Random();
 
   _RewardsState(this.user);

@@ -1,14 +1,13 @@
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/pages/widgets/bottom_menu/bottom_menu.dart';
 import 'package:bank_app/pages/widgets/menu/menu_app.dart';
 import 'package:bank_app/pages/widgets/page_view/my_app_bar.dart';
 import 'package:bank_app/pages/widgets/page_view/my_dots_app.dart';
 import 'package:bank_app/pages/widgets/page_view/page_view_app.dart';
 import 'package:flutter/material.dart';
-import 'package:bank_app/services/user_repository.dart';
 
 class HomePage extends StatefulWidget {
-  final User user;
+  final SimpleUser user;
 
   const HomePage({Key key, this.user}) : super(key: key);
 
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   bool _showMenu;
   int _currentIndex;
   double _yPosition;
-  User _user;
+  SimpleUser _user;
 
   _HomePageState(this._user);
 

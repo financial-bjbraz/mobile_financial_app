@@ -1,15 +1,15 @@
 import 'package:bank_app/entities/balance.dart';
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 final databaseReference = FirebaseDatabase.instance.reference();
 
-User saveUser(User user) {
+SimpleUser saveUser(SimpleUser user) {
   user = _saveUser(user);
   return user;
 }
 
-User _saveUser(User user) {
+SimpleUser _saveUser(SimpleUser user) {
   updateUser(user);
   return user;
 }
@@ -41,7 +41,7 @@ Future<bool> exists(String userId) async {
   return dataSnapshot.value != null;
 }
 
-void updateUser(User user) {
+void updateUser(SimpleUser user) {
   user.balances.lastUpdate = DateTime.now().toString();
   databaseReference.child('users/' + user.userId).update(user.toJson());
   //databaseReference.child('users/' + user.userId + '/balances').update(user.balances.toJson());
@@ -62,10 +62,10 @@ Future<Balance> searchBalance(String userId) async {
   return balance;
 }
 
-Future<User> searchUser(String userId) async {
+Future<SimpleUser> searchUser(String userId) async {
   DataSnapshot dataSnapshot =
   await databaseReference.child('users/' + userId).once();
-  User user;
+  SimpleUser user;
 
   Map<String, dynamic> attributes = {
     'name': '',
@@ -108,7 +108,7 @@ Future<User> searchUser(String userId) async {
   }
 
 
-  return new User.recovered
+  return new SimpleUser.recovered
   (
       name: attributes['name'],
       email: attributes['email'],

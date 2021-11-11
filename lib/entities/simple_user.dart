@@ -2,7 +2,7 @@ import 'package:bank_app/entities/balance.dart';
 import 'package:bank_app/services/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class User {
+class SimpleUser {
   String name;
   String email;
   String userId;
@@ -19,16 +19,16 @@ class User {
   String geolocalization;
 
   Balance balances;
-  FirebaseUser firebaseUser;
+  User firebaseUser;
 
-  User({this.name, this.email}) {
+  SimpleUser({this.name, this.email}) {
     createNewUserIfNotExists();
   }
 
-  User.recovered({this.name, this.email, this.mobileNumber, this.userId, this.cpf, this.address, this.address1, this.state, this.city,
+  SimpleUser.recovered({this.name, this.email, this.mobileNumber, this.userId, this.cpf, this.address, this.address1, this.state, this.city,
   this.neighborhood, this.photo, this.geolocalization, this.balances});
 
-  User.n({this.firebaseUser}) {
+  SimpleUser.n({this.firebaseUser}) {
 
     this.name = firebaseUser.displayName;
     this.email = firebaseUser.email;
@@ -68,7 +68,7 @@ class User {
   }
 
   void createNewUserIfNotExists() {
-    User u = null;
+    SimpleUser u = null;
     final DateTime now = DateTime.now();
     if(this.firebaseUser != null) {
       searchUser(this.firebaseUser.uid).then((value) =>
@@ -116,7 +116,7 @@ class User {
 }
 
 
-User createUser(record) {
+SimpleUser createUser(record) {
   final DateTime now = DateTime.now();
   Map<String, dynamic> attributes = {
     'name': '',
@@ -143,5 +143,5 @@ User createUser(record) {
     attributes[key] = value,
   });
 
-  return new User.recovered(name: attributes['name'], email: attributes['email']);
+  return new SimpleUser.recovered(name: attributes['name'], email: attributes['email']);
 }

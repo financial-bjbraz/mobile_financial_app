@@ -1,4 +1,4 @@
-import 'package:bank_app/entities/user.dart';
+import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/services/user_repository.dart';
 import 'package:firebase_database/firebase_database.dart';
 

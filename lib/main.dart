@@ -1,4 +1,5 @@
 import 'package:bank_app/pages/splash/splash_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,16 +21,32 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Bank App Style',
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
-      theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0x293145),
-        brightness: Brightness.dark,
-      ),
-      home: SplashPage(),
-    );
+    return FutureBuilder(
+        future: Firebase.initializeApp(),
+        builder: (context, snapshot){
+
+          if(snapshot.connectionState == ConnectionState.done){
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: 'Bank App Style',
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              supportedLocales: AppLocalizations.supportedLocales,
+              theme: ThemeData(
+                scaffoldBackgroundColor: const Color(0x293145),
+                brightness: Brightness.dark,
+              ),
+              home: SplashPage(),
+            // ignore: missing_return, missing_return
+            );
+          }
+
+          return CircularProgressIndicator();
+
+        });
+    
+    
+    
+    
+
   }
 }
