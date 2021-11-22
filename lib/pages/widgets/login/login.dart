@@ -126,8 +126,8 @@ class _BodyState extends State<Body> {
                                           )));
                             }
                           },
-                          color: Colors.purple[800],
-                          highlightColor: Colors.transparent,
+                          color: Colors.black,
+                          highlightColor: Colors.white,
                           elevation: 0,
                           disabledElevation: 0,
                           highlightElevation: 0,
@@ -170,8 +170,8 @@ class _BodyState extends State<Body> {
                             }
 
                           },
-                          color: Colors.purple[800],
-                          highlightColor: Colors.transparent,
+                          color: Colors.black,
+                          highlightColor: Colors.white,
                           elevation: 0,
                           disabledElevation: 0,
                           highlightElevation: 0,
@@ -223,7 +223,8 @@ class _BodyState extends State<Body> {
                           Image.asset(
                             "assets/images/google_logo.png",
                             color: Colors.white,
-                            height: 35,
+                            height: 30,
+                            width: 90,
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 10),
@@ -253,7 +254,8 @@ class _BodyState extends State<Body> {
                           Image.asset(
                             "assets/images/fb_logo5.png",
                             color: Colors.white,
-                            height: 35,
+                            height: 30,
+                            width: 70,
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 10),

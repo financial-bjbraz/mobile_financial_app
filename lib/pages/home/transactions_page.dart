@@ -37,7 +37,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
       _yPosition = _heightScreen * .24;
     }
     return Scaffold(
-      backgroundColor: Colors.purple[800],
+      backgroundColor: Color(0x293145),
       body: Stack(
         alignment: Alignment.topCenter,
         children: <Widget>[

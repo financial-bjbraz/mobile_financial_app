@@ -18,7 +18,7 @@ class MyAppBar extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Container(
-            color: Colors.purple[800],
+            color: Color(0x293145),
             height: MediaQuery.of(context).size.height * .20,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -26,7 +26,7 @@ class MyAppBar extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/nubank-logo-3.png',
+                    Image.asset('assets/images/bjbraz-logo.png',
                         height: 30, color: Colors.white),
                     SizedBox(
                       width: 10,

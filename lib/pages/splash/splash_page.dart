@@ -37,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
           backgroundColor: Color(0x293145),
           body: Center(
             child: Image.asset(
-              "assets/images/nubank-logo-3.png",
+              "assets/images/bjbraz-logo.png",
               color: Colors.white,
               height: 50,
             ),

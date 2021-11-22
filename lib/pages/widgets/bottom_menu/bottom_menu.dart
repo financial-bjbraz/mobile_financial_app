@@ -47,7 +47,7 @@ class _BottomMenuState extends State<BottomMenu> {
                 duration: Duration(milliseconds: 200),
                 opacity: !widget.showMenu ? 1 : 0,
                 child: Container(
-                  color: Colors.purple[800],
+                  color: Color(0x293145),
                   child: ListView(
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
