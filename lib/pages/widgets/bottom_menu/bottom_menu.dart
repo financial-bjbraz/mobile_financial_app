@@ -1,4 +1,6 @@
 import 'package:bank_app/pages/widgets/bottom_menu/item_menu_botton.dart';
+import 'package:bank_app/pages/widgets/detail/account_statements_detail.dart';
+import 'package:bank_app/pages/widgets/detail/friends.dart';
 import 'package:flutter/material.dart';
 
 class BottomMenu extends StatefulWidget {
@@ -30,11 +32,11 @@ class _BottomMenuState extends State<BottomMenu> {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
         tween: _tween,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 350),
         curve: Curves.easeOutExpo,
         builder: (context, value, child) {
           return AnimatedPositioned(
-            duration: Duration(milliseconds: 250),
+            duration: Duration(milliseconds: 350),
             bottom: !widget.showMenu
                 ? 0 + MediaQuery.of(context).padding.bottom
                 : 0,
@@ -55,38 +57,47 @@ class _BottomMenuState extends State<BottomMenu> {
                       ItemMenuBottom(
                         icon: Icons.person_add,
                         text: "indicar amigos",
+                        widget: FriendsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.phone_android,
                         text: "Recarga de celular",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.chat,
                         text: "Cobrar",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.monetization_on,
                         text: "Empréstimos",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.move_to_inbox,
                         text: "Depositar",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.mobile_screen_share,
                         text: "Transferir",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.format_align_center,
                         text: "Ajustar limite",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.chrome_reader_mode,
                         text: "Pagar",
+                        widget: AccountStatementsDetail(),
                       ),
                       ItemMenuBottom(
                         icon: Icons.lock_open,
                         text: "Bloquear",
+                        widget: AccountStatementsDetail(),
                       ),
                     ],
                   ),

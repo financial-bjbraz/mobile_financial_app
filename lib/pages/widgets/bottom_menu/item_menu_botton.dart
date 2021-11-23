@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class ItemMenuBottom extends StatelessWidget {
   final IconData icon;
   final String text;
+  final StatelessWidget widget;
 
-  const ItemMenuBottom({Key key, this.icon, this.text}) : super(key: key);
+  const ItemMenuBottom({Key key, this.icon, this.text, this.widget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class ItemMenuBottom extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) =>
-              DetailList(child: AccountStatementsDetail()),
+              DetailList(child: this.widget),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             var begin = Offset(0.0, 1.0);
             var end = Offset.zero;
