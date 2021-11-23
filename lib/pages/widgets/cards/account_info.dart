@@ -1,5 +1,7 @@
+import 'package:bank_app/services/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountInfo extends StatefulWidget {
   const AccountInfo({Key key}) : super(key: key);
@@ -15,8 +17,14 @@ class _AccountInfoState extends State<AccountInfo>
   @override
   bool get wantKeepAlive => true;
 
+  String currentBalance = "R\$ 0,00";
+
   @override
   Widget build(BuildContext context) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+
+    searchBalance(auth.currentUser.uid).then((value) => currentBalance = value.getFormattedBalance());
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: Column(
@@ -84,7 +92,7 @@ class _AccountInfoState extends State<AccountInfo>
                           _showSaldo
                               ? Text.rich(
                                   TextSpan(
-                                    text: "R\$ 2.500,80",
+                                    text: currentBalance,
                                   ),
                                   textAlign: TextAlign.start,
                                   style: TextStyle(

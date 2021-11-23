@@ -40,6 +40,7 @@ class _BodyState extends State<Body> {
   final auth = FirebaseAuth.instance;
 
   Widget loginButton() {
+
     FocusNode textSecondFocusNode = new FocusNode();
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),

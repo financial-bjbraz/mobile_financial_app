@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bank_app/services/user_repository.dart';
 
 class AccountStatementsDetail extends StatelessWidget {
   bool _showSaldo = false;
+  String currentBalance = "R\$ 0,00";
+
 
   Widget build(BuildContext context) {
+
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    searchBalance(auth.currentUser.uid).then((value) => currentBalance = value.getFormattedBalance());
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -26,7 +34,7 @@ class AccountStatementsDetail extends StatelessWidget {
               ],
             ),
           ),
-          backgroundColor: Colors.purple[800],
+          backgroundColor: Colors.black26,
         ),
         body: ClipRRect(
           borderRadius: BorderRadius.circular(5),
@@ -91,7 +99,7 @@ class AccountStatementsDetail extends StatelessWidget {
                               _showSaldo
                                   ? Text.rich(
                                       TextSpan(
-                                        text: "R\$ 2.500,80",
+                                        text: currentBalance,
                                       ),
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
@@ -130,7 +138,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "1 - Compra mais recente em Super Mercado no valor de R\$ 150,99",
+                                "1 - account_statements_detail.dart de R\$ 150,99" + auth.currentUser.displayName,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,

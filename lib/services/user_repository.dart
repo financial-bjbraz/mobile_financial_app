@@ -54,12 +54,37 @@ Future<Balance> searchBalance(String userId) async {
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      final DateTime now = DateTime.now();
-      balance = new Balance(balance: 0, lastUpdate: now.toString(), userid: '');
+      if(key == "balance") {
+        final DateTime now = DateTime.now();
+        balance =
+        new Balance(balance: value, lastUpdate: now.toString(), userid: '');
+      }
     });
   }
 
   return balance;
+}
+
+Future<Balance> retrieve(String userId) async {
+  DataSnapshot dataSnapshot =
+  await databaseReference.child('users/' + userId + '/balances').once();
+  Balance balance;
+
+  if (dataSnapshot.value != null) {
+    dataSnapshot.value.forEach((key, value) {
+      if(key == "balance") {
+        final DateTime now = DateTime.now();
+        balance =
+        new Balance(balance: value, lastUpdate: now.toString(), userid: '');
+      }
+    });
+  }
+
+  return balance;
+}
+
+Future<num> getBalance(String userId) async {
+ return searchBalance(userId).then((value) => double.parse(value.balance));
 }
 
 Future<SimpleUser> searchUser(String userId) async {
@@ -83,7 +108,7 @@ Future<SimpleUser> searchUser(String userId) async {
     'lastUpdate': '',
     'userId': '',
     'balances': {
-      'balance': 0,
+      'balance': '0.00',
       'lastUpdate': '',
       'userid': ''
     }
@@ -92,7 +117,7 @@ Future<SimpleUser> searchUser(String userId) async {
   Map<dynamic, dynamic> attributesBalance = {
     'user': '',
     'userid': '',
-    'balance': 0.0,
+    'balance': '0.00',
     'lastUpdate': ''
   };
 

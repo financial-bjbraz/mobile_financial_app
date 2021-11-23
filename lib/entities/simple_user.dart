@@ -51,13 +51,13 @@ class SimpleUser {
 
     if(balances == null){
       final DateTime now = DateTime.now();
-      balances = new Balance(balance: 0, lastUpdate: now.toString(), userid: firebaseUser.uid);
+      balances = new Balance(balance: '0.00', lastUpdate: now.toString(), userid: firebaseUser.uid);
     }
-    return balances.balance;
+    return double.parse(balances.balance);
   }
 
   void setBalances(double d) {
-    balances.balance += d;
+    balances.balance += '1.00';
   }
 
   String getName() {
@@ -71,14 +71,19 @@ class SimpleUser {
     SimpleUser u = null;
     final DateTime now = DateTime.now();
     if(this.firebaseUser != null) {
-      searchUser(this.firebaseUser.uid).then((value) =>
+      retrieve(this.firebaseUser.uid).then((value) =>
         {
 
           if(value != null){
-            u = value,
-            balances = u.balances,
+            searchUser(this.firebaseUser.uid).then(
+                      (value) =>
+                      {
+                        u = value,
+                        balances = u.balances,
+                      }),
+
           }else{
-            balances = new Balance(balance: 0.0, lastUpdate: now.toString(), userid: firebaseUser.uid),
+            balances = new Balance(balance: '0.0', lastUpdate: now.toString(), userid: firebaseUser.uid),
             saveUser(this),
           }
         }
