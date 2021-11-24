@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ItemMenu extends StatelessWidget {
-  const ItemMenu({Key key, this.icone, this.text}) : super(key: key);
+  const ItemMenu({Key? key, required this.icone, required this.text})
+      : super(key: key);
 
   final IconData icone;
   final String text;

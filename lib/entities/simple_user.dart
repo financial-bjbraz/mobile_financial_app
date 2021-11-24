@@ -3,35 +3,46 @@ import 'package:bank_app/services/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SimpleUser {
-  String name;
-  String email;
-  String userId;
+  late String name;
+  late String email;
+  late String userId;
 
-  String mobileNumber;
-  String cpf;
-  String address;
-  String address1;
-  String address2;
-  String state;
-  String city;
-  String neighborhood;
-  String photo;
-  String geolocalization;
+  late String mobileNumber;
+  late String cpf;
+  late String address;
+  late String address1;
+  late String address2;
+  late String state;
+  late String city;
+  late String neighborhood;
+  late String photo;
+  late String geolocalization;
 
-  Balance balances;
-  User firebaseUser;
+  Balance balances = Balance(balance: "0.00", lastUpdate: "", userid: "");
+  late User firebaseUser;
 
-  SimpleUser({this.name, this.email}) {
+  SimpleUser({required this.name, required this.email}) {
     createNewUserIfNotExists();
   }
 
-  SimpleUser.recovered({this.name, this.email, this.mobileNumber, this.userId, this.cpf, this.address, this.address1, this.state, this.city,
-  this.neighborhood, this.photo, this.geolocalization, this.balances});
+  SimpleUser.recovered(
+      {required this.name,
+      required this.email,
+      mobileNumber,
+      userId,
+      cpf,
+      address,
+      address1,
+      state,
+      city,
+      neighborhood,
+      photo,
+      geolocalization,
+      Balance? balances});
 
-  SimpleUser.n({this.firebaseUser}) {
-
-    this.name = firebaseUser.displayName;
-    this.email = firebaseUser.email;
+  SimpleUser.n({required this.firebaseUser}) {
+    this.name = firebaseUser.displayName!;
+    this.email = firebaseUser.email!;
     this.userId = firebaseUser.uid;
 
     this.mobileNumber = "(11) 97513-2627";
@@ -48,10 +59,12 @@ class SimpleUser {
   }
 
   num getBalance() {
-
-    if(balances == null){
+    if (balances == null) {
       final DateTime now = DateTime.now();
-      balances = new Balance(balance: '0.00', lastUpdate: now.toString(), userid: firebaseUser.uid);
+      balances = new Balance(
+          balance: '0.00',
+          lastUpdate: now.toString(),
+          userid: firebaseUser.uid);
     }
     return double.parse(balances.balance);
   }
@@ -60,7 +73,7 @@ class SimpleUser {
     balances.balance += '1.00';
   }
 
-  String getName() {
+  String? getName() {
     if (firebaseUser == null)
       return name;
     else
@@ -68,31 +81,28 @@ class SimpleUser {
   }
 
   void createNewUserIfNotExists() {
-    SimpleUser u = null;
+    SimpleUser? u = null;
     final DateTime now = DateTime.now();
-    if(this.firebaseUser != null) {
-      retrieve(this.firebaseUser.uid).then((value) =>
-        {
-
-          if(value != null){
-            searchUser(this.firebaseUser.uid).then(
-                      (value) =>
-                      {
-                        u = value,
-                        balances = u.balances,
-                      }),
-
-          }else{
-            balances = new Balance(balance: '0.0', lastUpdate: now.toString(), userid: firebaseUser.uid),
-            saveUser(this),
-          }
-        }
-      );
-
+    if (this.firebaseUser != null) {
+      retrieve(this.firebaseUser.uid).then((value) => {
+            if (value != null)
+              {
+                searchUser(this.firebaseUser.uid).then((value) => {
+                      u = value,
+                      balances = u!.balances,
+                    }),
+              }
+            else
+              {
+                balances = new Balance(
+                    balance: '0.0',
+                    lastUpdate: now.toString(),
+                    userid: firebaseUser.uid),
+                saveUser(this),
+              }
+          });
     }
-
   }
-
 
   Map<String, dynamic> toJson() {
     final DateTime now = DateTime.now();
@@ -111,22 +121,21 @@ class SimpleUser {
       'photo': this.photo,
       'geo_localization': this.geolocalization,
       'lastUpdate': now.toString(),
-      'balances':{
-        'balance':this.balances.balance,
-        'userid':this.balances.userid,
-        'lastUpdate':now.toString()
+      'balances': {
+        'balance': this.balances.balance,
+        'userid': this.balances.userid,
+        'lastUpdate': now.toString()
       }
     };
   }
 }
-
 
 SimpleUser createUser(record) {
   final DateTime now = DateTime.now();
   Map<String, dynamic> attributes = {
     'name': '',
     'cpf': '',
-    'email':'',
+    'email': '',
     'mobile_number': '',
     'address': '',
     'address1': '',
@@ -134,19 +143,16 @@ SimpleUser createUser(record) {
     'state': '',
     'city': '',
     'neighborhood': '',
-    'photo':'',
+    'photo': '',
     'geo_localization': '',
-    'lastUpdate':'',
-    'userId':'',
-    'balances':{
-      'balance':0,
-      'userid':'',
-      'lastUpdate':now.toString()
-    }
+    'lastUpdate': '',
+    'userId': '',
+    'balances': {'balance': 0, 'userid': '', 'lastUpdate': now.toString()}
   };
   record.forEach((key, value) => {
-    attributes[key] = value,
-  });
+        attributes[key] = value,
+      });
 
-  return new SimpleUser.recovered(name: attributes['name'], email: attributes['email']);
+  return new SimpleUser.recovered(
+      name: attributes['name'], email: attributes['email']);
 }

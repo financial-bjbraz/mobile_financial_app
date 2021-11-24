@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:math';
 
 import 'package:bank_app/entities/post.dart';
@@ -7,18 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Rewards extends StatefulWidget {
-  const Rewards({Key key, this.user}) : super(key: key);
+  const Rewards({Key? key, required this.user}) : super(key: key);
   final SimpleUser user;
 
   @override
   _RewardsState createState() => _RewardsState(this.user);
 }
 
-class _RewardsState extends State<Rewards>
-    with AutomaticKeepAliveClientMixin {
+class _RewardsState extends State<Rewards> with AutomaticKeepAliveClientMixin {
   bool _buttonPressed = false;
   List<Post> posts = [];
-  Post post;
+  late Post post;
   final SimpleUser user;
   var randon = Random();
 
@@ -58,7 +59,7 @@ class _RewardsState extends State<Rewards>
             height: 50,
             width: double.infinity,
             decoration: BoxDecoration(
-              border: Border.all(width: 0.7, color: Colors.purple[800]),
+              border: Border.all(width: 0.7, color: const Color(0x293145)),
             ),
             child: RaisedButton(
               child: Text(

@@ -4,12 +4,12 @@ import 'package:firebase_database/firebase_database.dart';
 import '../services/postRepository.dart';
 
 class Post {
-  String body;
-  String author;
-  DatabaseReference _id;
-  bool updated = false;
+  late String body;
+  late String author;
+  late DatabaseReference _id;
+  late bool updated = false;
 
-  Post({this.body, this.author});
+  Post({required this.body, required this.author});
 
   void setId(DatabaseReference id) {
     this._id = id;

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 
 class BottomMenu extends StatefulWidget {
   final bool showMenu;
-  const BottomMenu({Key key, this.showMenu}) : super(key: key);
+  const BottomMenu({Key? key, required this.showMenu}) : super(key: key);
   @override
   _BottomMenuState createState() => _BottomMenuState();
 }
 
 class _BottomMenuState extends State<BottomMenu> {
-  Tween _tween;
+  late Tween<double> _tween;
 
   @override
   void initState() {

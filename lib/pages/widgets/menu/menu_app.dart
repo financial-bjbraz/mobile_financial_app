@@ -3,7 +3,8 @@ import 'package:bank_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class MenuApp extends StatelessWidget {
-  const MenuApp({Key key, this.top, this.showMenu}) : super(key: key);
+  const MenuApp({Key? key, required this.top, required this.showMenu})
+      : super(key: key);
   final double top;
   final bool showMenu;
 
@@ -112,9 +113,7 @@ class MenuApp extends StatelessWidget {
                             highlightElevation: 0,
                             hoverElevation: 0,
                             onPressed: () {
-
                               logout(context);
-
                             },
                             focusElevation: 0,
                             splashColor: Colors.purple[900],

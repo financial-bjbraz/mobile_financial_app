@@ -10,7 +10,7 @@ void main() {
     SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor:  const Color(0x293145),
+      systemNavigationBarColor: const Color(0x293145),
     ),
   );
 
@@ -23,30 +23,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future: Firebase.initializeApp(),
-        builder: (context, snapshot){
-
-          if(snapshot.connectionState == ConnectionState.done){
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'Bank App Style',
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              localizationsDelegates: [AppLocalizations.delegate],
               supportedLocales: AppLocalizations.supportedLocales,
               theme: ThemeData(
                 scaffoldBackgroundColor: const Color(0x293145),
                 brightness: Brightness.dark,
               ),
               home: SplashPage(),
-            // ignore: missing_return, missing_return
+              // ignore: missing_return, missing_return
             );
           }
 
           return CircularProgressIndicator();
-
         });
-    
-    
-    
-    
-
   }
 }

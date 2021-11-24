@@ -8,7 +8,9 @@ class ItemMenuBottom extends StatelessWidget {
   final String text;
   final StatelessWidget widget;
 
-  const ItemMenuBottom({Key key, this.icon, this.text, this.widget}) : super(key: key);
+  const ItemMenuBottom(
+      {Key? key, required this.icon, required this.text, required this.widget})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

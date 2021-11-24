@@ -9,17 +9,17 @@ import 'package:flutter/material.dart';
 class HomePage extends StatefulWidget {
   final SimpleUser user;
 
-  const HomePage({Key key, this.user}) : super(key: key);
+  const HomePage({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState(user);
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _showMenu;
-  int _currentIndex;
-  double _yPosition;
-  SimpleUser _user;
+  late bool _showMenu;
+  late int _currentIndex;
+  late double _yPosition = 0;
+  late SimpleUser _user;
 
   _HomePageState(this._user);
 
@@ -28,15 +28,13 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _showMenu = false;
     _currentIndex = 0;
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     double _heightScreen = MediaQuery.of(context).size.height;
 
-    if (_yPosition == null) {
+    if (_yPosition == 0) {
       _yPosition = _heightScreen * .24;
     }
     return Scaffold(

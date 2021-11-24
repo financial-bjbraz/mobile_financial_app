@@ -1,38 +1,37 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Cards {
-  num cardBalance;
-  int cardCvc;
-  int cardCvv;
-  String cardDate;
-  int cardDigit;
-  String cardFlag;
-  num cardId;
-  String cardImage;
-  num cardLimit;
-  num cardLimitRemaining;
-  String cardName;
-  num cardNumber;
-  String cardValidity;
-  User firebaseUser;
+  late num cardBalance;
+  late int cardCvc;
+  late int cardCvv;
+  late String cardDate;
+  late int cardDigit;
+  late String cardFlag;
+  late num cardId;
+  late String cardImage;
+  late num cardLimit;
+  late num cardLimitRemaining;
+  late String cardName;
+  late num cardNumber;
+  late String cardValidity;
+  late User firebaseUser;
 
-  Cards.recovered({
-    this.cardBalance,
-    this.cardCvc,
-    this.cardCvv,
-    this.cardDate,
-    this.cardDigit,
-    this.cardFlag,
-    this.cardId,
-    this.cardImage,
-    this.cardLimit,
-    this.cardLimitRemaining,
-    this.cardName,
-    this.cardNumber,
-    this.cardValidity});
+  Cards.recovered(
+      {required this.cardBalance,
+      required this.cardCvc,
+      required this.cardCvv,
+      required this.cardDate,
+      required this.cardDigit,
+      required this.cardFlag,
+      required this.cardId,
+      required this.cardImage,
+      required this.cardLimit,
+      required this.cardLimitRemaining,
+      required this.cardName,
+      required this.cardNumber,
+      required this.cardValidity});
 
-  Cards.n({this.firebaseUser}) {
-
+  Cards.n({required this.firebaseUser}) {
     this.cardBalance = 0.0;
     this.cardCvc = 1;
     this.cardCvv = 1;
@@ -47,7 +46,6 @@ class Cards {
     this.cardNumber = 1111111;
     this.cardValidity = '23/10/2029';
   }
-
 
   Map<String, dynamic> toJson() {
     return {
@@ -66,6 +64,4 @@ class Cards {
       'cardValidity': this.cardValidity
     };
   }
-
-
 }

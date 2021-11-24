@@ -16,12 +16,12 @@ class PageViewApp extends StatefulWidget {
   final SimpleUser user;
 
   const PageViewApp(
-      {Key key,
-      this.top,
-      this.onChanged,
-      this.onPanUpdated,
-      this.showMenu,
-      this.user})
+      {Key? key,
+      required this.top,
+      required this.onChanged,
+      required this.onPanUpdated,
+      required this.showMenu,
+      required this.user})
       : super(key: key);
 
   @override
@@ -29,7 +29,7 @@ class PageViewApp extends StatefulWidget {
 }
 
 class _PageViewAppState extends State<PageViewApp> {
-  Tween _tween;
+  late Tween<double> _tween;
   final SimpleUser user;
 
   _PageViewAppState(this.user);
@@ -82,8 +82,8 @@ class _PageViewAppState extends State<PageViewApp> {
                     detailChild: AccountStatementsDetail(),
                   ),
                   CardApp(
+                    detailChild: AccountInfo(),
                     child: Rewards(user: user),
-                    detailChild: null,
                   ),
                 ],
               ),

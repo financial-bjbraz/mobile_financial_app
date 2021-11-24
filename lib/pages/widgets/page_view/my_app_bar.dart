@@ -5,7 +5,11 @@ class MyAppBar extends StatelessWidget {
   final VoidCallback onTap;
   final String userName;
 
-  const MyAppBar({Key key, this.showMenu, this.onTap, this.userName})
+  const MyAppBar(
+      {Key? key,
+      required this.showMenu,
+      required this.onTap,
+      required this.userName})
       : super(key: key);
 
   @override

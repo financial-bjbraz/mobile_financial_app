@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountInfo extends StatefulWidget {
-  const AccountInfo({Key key}) : super(key: key);
+  const AccountInfo({Key? key}) : super(key: key);
 
   @override
   _AccountInfoState createState() => _AccountInfoState();
@@ -23,7 +23,8 @@ class _AccountInfoState extends State<AccountInfo>
   Widget build(BuildContext context) {
     final FirebaseAuth auth = FirebaseAuth.instance;
 
-    searchBalance(auth.currentUser.uid).then((value) => currentBalance = value.getFormattedBalance());
+    searchBalance(auth.currentUser!.uid)
+        .then((value) => currentBalance = value.getFormattedBalance());
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),

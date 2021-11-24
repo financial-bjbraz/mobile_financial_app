@@ -15,29 +15,28 @@ SimpleUser _saveUser(SimpleUser user) {
 }
 
 Balance _saveBalance(Balance balance) {
-  exists(balance.userid).then((value) =>
-  {
-    if (!value)
-      {
-        databaseReference.child('users/').child(balance.userid).set(value),
-        databaseReference
-            .child('users/')
-            .child(balance.userid)
-            .child('balances')
-            .set(balance.toJson())
-      }
-    else
-      {
-        searchBalance(balance.userid).then((value) => balance = value),
-      }
-  });
+  exists(balance.userid).then((value) => {
+        if (!value)
+          {
+            databaseReference.child('users/').child(balance.userid).set(value),
+            databaseReference
+                .child('users/')
+                .child(balance.userid)
+                .child('balances')
+                .set(balance.toJson())
+          }
+        else
+          {
+            searchBalance(balance.userid).then((value) => balance = value),
+          }
+      });
 
   return balance;
 }
 
 Future<bool> exists(String userId) async {
   DataSnapshot dataSnapshot =
-  await databaseReference.child('users/' + userId + '/balances').once();
+      await databaseReference.child('users/' + userId + '/balances').once();
   return dataSnapshot.value != null;
 }
 
@@ -49,15 +48,15 @@ void updateUser(SimpleUser user) {
 
 Future<Balance> searchBalance(String userId) async {
   DataSnapshot dataSnapshot =
-  await databaseReference.child('users/' + userId + '/balances').once();
-  Balance balance;
+      await databaseReference.child('users/' + userId + '/balances').once();
+  Balance balance = Balance(balance: "0.00", lastUpdate: "", userid: "");
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      if(key == "balance") {
+      if (key == "balance") {
         final DateTime now = DateTime.now();
         balance =
-        new Balance(balance: value, lastUpdate: now.toString(), userid: '');
+            new Balance(balance: value, lastUpdate: now.toString(), userid: '');
       }
     });
   }
@@ -67,15 +66,15 @@ Future<Balance> searchBalance(String userId) async {
 
 Future<Balance> retrieve(String userId) async {
   DataSnapshot dataSnapshot =
-  await databaseReference.child('users/' + userId + '/balances').once();
-  Balance balance;
+      await databaseReference.child('users/' + userId + '/balances').once();
+  Balance balance = Balance(balance: "0.00", lastUpdate: "", userid: "");
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, value) {
-      if(key == "balance") {
+      if (key == "balance") {
         final DateTime now = DateTime.now();
         balance =
-        new Balance(balance: value, lastUpdate: now.toString(), userid: '');
+            new Balance(balance: value, lastUpdate: now.toString(), userid: '');
       }
     });
   }
@@ -84,12 +83,12 @@ Future<Balance> retrieve(String userId) async {
 }
 
 Future<num> getBalance(String userId) async {
- return searchBalance(userId).then((value) => double.parse(value.balance));
+  return searchBalance(userId).then((value) => double.parse(value.balance));
 }
 
 Future<SimpleUser> searchUser(String userId) async {
   DataSnapshot dataSnapshot =
-  await databaseReference.child('users/' + userId).once();
+      await databaseReference.child('users/' + userId).once();
   SimpleUser user;
 
   Map<String, dynamic> attributes = {
@@ -107,11 +106,7 @@ Future<SimpleUser> searchUser(String userId) async {
     'geo_localization': '',
     'lastUpdate': '',
     'userId': '',
-    'balances': {
-      'balance': '0.00',
-      'lastUpdate': '',
-      'userid': ''
-    }
+    'balances': {'balance': '0.00', 'lastUpdate': '', 'userid': ''}
   };
 
   Map<dynamic, dynamic> attributesBalance = {
@@ -123,18 +118,15 @@ Future<SimpleUser> searchUser(String userId) async {
 
   if (dataSnapshot.value != null) {
     dataSnapshot.value.forEach((key, record) {
-
       if (key == 'balances') {
-          attributesBalance = record;
+        attributesBalance = record;
       } else {
         attributes[key] = record;
       }
     });
   }
 
-
-  return new SimpleUser.recovered
-  (
+  return new SimpleUser.recovered(
       name: attributes['name'],
       email: attributes['email'],
       mobileNumber: attributes['mobile_number'],
@@ -147,7 +139,8 @@ Future<SimpleUser> searchUser(String userId) async {
       neighborhood: attributes['neighborhood'],
       photo: attributes['photo'],
       geolocalization: attributes['geo_localization'],
-      balances: Balance.recovered(balance: attributesBalance['balance'], lastUpdate: attributesBalance['lastUpdate'], userid: attributesBalance['userid']));
-
+      balances: Balance.recovered(
+          balance: attributesBalance['balance'],
+          lastUpdate: attributesBalance['lastUpdate'],
+          userid: attributesBalance['userid']));
 }
-

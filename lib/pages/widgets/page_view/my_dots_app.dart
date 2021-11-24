@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MyDotsApp extends StatelessWidget {
-  const MyDotsApp({Key key, this.currentIndex, this.top, this.showMenu})
+  const MyDotsApp(
+      {Key? key,
+      required this.currentIndex,
+      required this.top,
+      required this.showMenu})
       : super(key: key);
 
   final int currentIndex;

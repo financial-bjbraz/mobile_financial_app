@@ -1,14 +1,19 @@
 import 'package:firebase_database/firebase_database.dart';
 
 class Statements {
-  String date;
-  double value;
-  String message;
-  String accountId;
-  bool updated = false;
-  String userId;
-  DatabaseReference _id;
-  Statements({this.date, this.value, this.message, this.accountId});
+  late String date;
+  late double value;
+  late String message;
+  late String accountId;
+  late bool updated = false;
+  late String userId;
+  late DatabaseReference _id;
+
+  Statements(
+      {required this.date,
+      required this.value,
+      required this.message,
+      required this.accountId});
 
   void update() {
     updated = true;
@@ -29,14 +34,19 @@ class Statements {
 }
 
 Statements create(record) {
-  Map<String, dynamic> attributes = {'value': '', 'date': '', 'message': '', 'account_id': '', 'updated':''};
+  Map<String, dynamic> attributes = {
+    'value': '',
+    'date': '',
+    'message': '',
+    'account_id': '',
+    'updated': ''
+  };
   record.forEach((key, value) => {attributes[key] = value});
   Statements post = new Statements(
-    value: attributes['value'],
-    date: attributes['date'],
-    message: attributes['message'],
+      value: attributes['value'],
+      date: attributes['date'],
+      message: attributes['message'],
       accountId: attributes['account_id']);
 
   return post;
 }
-

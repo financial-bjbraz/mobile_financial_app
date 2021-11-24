@@ -5,18 +5,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_app/services/auth.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({Key key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Firebase.initializeApp();
     return Container(
       child: Scaffold(
-        backgroundColor:  const Color(0x293145),
+        backgroundColor: const Color(0x293145),
         body: Body(),
       ),
     );
@@ -29,18 +27,17 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   String MESSAGE_INVALID_EMAIL = "Invalid email";
-  String MESSAGE_INVALID_PASSWORD = "Invalid Password. Password must not be least than 8 chars";
-
+  String MESSAGE_INVALID_PASSWORD =
+      "Invalid Password. Password must not be least than 8 chars";
 
   TextEditingController passwordController = new TextEditingController();
   TextEditingController mailController = new TextEditingController();
-  User user;
-  bool _buttonPressed = false;
-  String _email, _password;
+  late User user;
+  late bool _buttonPressed = false;
+  late String _email, _password;
   final auth = FirebaseAuth.instance;
 
   Widget loginButton() {
-
     FocusNode textSecondFocusNode = new FocusNode();
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
@@ -51,7 +48,7 @@ class _BodyState extends State<Body> {
             child: Container(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                AppLocalizations.of(context).title,
+                "", //AppLocalizations.of(context).title,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -156,20 +153,18 @@ class _BodyState extends State<Body> {
                         ),
                         RaisedButton(
                           onPressed: () {
-
-                            if(validate()){
+                            if (validate()) {
                               auth.createUserWithEmailAndPassword(
                                   email: mailController.text,
                                   password: passwordController.text);
                               Navigator.of(context)
                                   .pushReplacement(MaterialPageRoute(
-                                  builder: (context) => TransactionsPage(
-                                    user: new SimpleUser(
-                                        name: mailController.text,
-                                        email: mailController.text),
-                                  )));
+                                      builder: (context) => TransactionsPage(
+                                            user: new SimpleUser(
+                                                name: mailController.text,
+                                                email: mailController.text),
+                                          )));
                             }
-
                           },
                           color: Colors.black,
                           highlightColor: Colors.white,
@@ -281,11 +276,8 @@ class _BodyState extends State<Body> {
   }
 
   void clickLoginGoogle() {
-
     siginInWithGoogle().then((value) => {
-
-
-          this.user = value,
+          this.user = value!,
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -298,18 +290,17 @@ class _BodyState extends State<Body> {
   }
 
   void clickLoginFacebook() {
-
     loginFacebook().then((value) => {
-      this.user = value,
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePage(
-            user: new SimpleUser.n(firebaseUser: this.user),
+          this.user = value!,
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(
+                user: new SimpleUser.n(firebaseUser: this.user),
+              ),
+            ),
           ),
-        ),
-      ),
-    });
+        });
   }
 
   @override
@@ -322,20 +313,20 @@ class _BodyState extends State<Body> {
 
   bool validate() {
     var email = mailController.text;
-    var password =  passwordController.text;
-    var message  = "";
+    var password = passwordController.text;
+    var message = "";
 
-    if(email.isEmpty){
+    if (email.isEmpty) {
       showMessage(MESSAGE_INVALID_EMAIL);
       return false;
     }
 
-    if(password.isEmpty){
+    if (password.isEmpty) {
       showMessage(MESSAGE_INVALID_PASSWORD);
       return false;
     }
 
-    if(password.length < 8){
+    if (password.length < 8) {
       showMessage(MESSAGE_INVALID_PASSWORD);
       return false;
     }
@@ -343,7 +334,7 @@ class _BodyState extends State<Body> {
     return true;
   }
 
-  void showMessage(String message){
+  void showMessage(String message) {
     final snackBar = SnackBar(
       content: Text(message),
       action: SnackBarAction(

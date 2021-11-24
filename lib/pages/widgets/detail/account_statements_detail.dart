@@ -7,11 +7,10 @@ class AccountStatementsDetail extends StatelessWidget {
   bool _showSaldo = false;
   String currentBalance = "R\$ 0,00";
 
-
   Widget build(BuildContext context) {
-
     final FirebaseAuth auth = FirebaseAuth.instance;
-    searchBalance(auth.currentUser.uid).then((value) => currentBalance = value.getFormattedBalance());
+    searchBalance(auth.currentUser!.uid)
+        .then((value) => currentBalance = value.getFormattedBalance());
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -138,7 +137,7 @@ class AccountStatementsDetail extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "1 - account_statements_detail.dart de R\$ 150,99" + auth.currentUser.displayName,
+                                "1 - account_statements_detail.dart de R\$ 150,99",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13,
@@ -155,7 +154,6 @@ class AccountStatementsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -182,7 +180,6 @@ class AccountStatementsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -209,7 +206,6 @@ class AccountStatementsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -236,7 +232,6 @@ class AccountStatementsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[

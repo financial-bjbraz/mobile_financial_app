@@ -4,10 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bank_app/services/user_repository.dart';
 
 class FriendsDetail extends StatelessWidget {
-
-
   Widget build(BuildContext context) {
-
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -15,12 +12,12 @@ class FriendsDetail extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: <Widget>[
-                Icon(Icons.attach_money, color: Colors.grey),
+                Icon(Icons.add_comment_outlined, color: Colors.grey),
                 SizedBox(
                   width: 5,
                 ),
                 Text(
-                  "Conta",
+                  "Convidar seus amigos",
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 13,
@@ -49,12 +46,12 @@ class FriendsDetail extends StatelessWidget {
                           children: [
                             Row(
                               children: <Widget>[
-                                Icon(Icons.attach_money, color: Colors.grey),
+                                Icon(Icons.add, color: Colors.grey),
                                 SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "Conta",
+                                  "Compartilhar",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 13,
@@ -63,15 +60,18 @@ class FriendsDetail extends StatelessWidget {
                               ],
                             ),
                             GestureDetector(
-                              onTap: () {},
-                              child: SvgPicture.asset(
-                                false
-                                    ? "assets/icons/eye-outline.svg"
-                                    : "assets/icons/eye-off-outline.svg",
-                                color: Colors.grey,
-                                semanticsLabel: "visualizar",
-                              ),
-                            ),
+                                onTap: () {},
+                                child: Icon(Icons.share_rounded,
+                                    color: Colors.grey)
+
+                                // child: SvgPicture.asset(
+                                //   false
+                                //       ? "assets/icons/eye-outline.svg"
+                                //       : "assets/icons/eye-off-outline.svg",
+                                //   color: Colors.grey,
+                                //   semanticsLabel: "visualizar",
+                                // ),
+                                ),
                           ],
                         ),
                       ),
@@ -84,7 +84,7 @@ class FriendsDetail extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "Saldo disponível",
+                                "Ganhe prêmios para cada indicação que abrir uma conta",
                                 textAlign: TextAlign.start,
                                 style: TextStyle(
                                   color: Colors.grey,
@@ -93,19 +93,19 @@ class FriendsDetail extends StatelessWidget {
                               ),
                               false
                                   ? Text.rich(
-                                TextSpan(
-                                  text: "",
-                                ),
-                                textAlign: TextAlign.start,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 28,
-                                ),
-                              )
+                                      TextSpan(
+                                        text: "",
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 28,
+                                      ),
+                                    )
                                   : Container(
-                                  height: 32,
-                                  width: 140,
-                                  color: Colors.grey[200]),
+                                      height: 32,
+                                      width: 140,
+                                      color: Colors.grey[200]),
                             ],
                           ),
                         ),
@@ -150,7 +150,6 @@ class FriendsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -177,7 +176,6 @@ class FriendsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -204,7 +202,6 @@ class FriendsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -231,7 +228,6 @@ class FriendsDetail extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[

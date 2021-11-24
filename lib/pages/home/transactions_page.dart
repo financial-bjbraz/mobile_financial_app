@@ -8,17 +8,17 @@ import 'package:flutter/material.dart';
 class TransactionsPage extends StatefulWidget {
   final SimpleUser user;
 
-  const TransactionsPage({Key key, this.user}) : super(key: key);
+  const TransactionsPage({Key? key, required this.user}) : super(key: key);
 
   @override
   _TransactionsPageState createState() => _TransactionsPageState(user);
 }
 
 class _TransactionsPageState extends State<TransactionsPage> {
-  bool _showMenu;
-  int _currentIndex;
-  double _yPosition;
-  final SimpleUser _user;
+  late bool _showMenu;
+  late int _currentIndex;
+  late double _yPosition = 0;
+  late final SimpleUser _user;
 
   _TransactionsPageState(this._user);
 
@@ -33,7 +33,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
   Widget build(BuildContext context) {
     double _heightScreen = MediaQuery.of(context).size.height;
 
-    if (_yPosition == null) {
+    if (_yPosition == 0) {
       _yPosition = _heightScreen * .24;
     }
     return Scaffold(
@@ -60,10 +60,9 @@ class _TransactionsPageState extends State<TransactionsPage> {
             showMenu: _showMenu,
           ),
           MyDotsApp(
-            showMenu: _showMenu,
-            top: _heightScreen * .70,
-            currentIndex: _currentIndex,
-          ),
+              showMenu: _showMenu,
+              top: _heightScreen * .70,
+              currentIndex: _currentIndex),
         ],
       ),
     );
