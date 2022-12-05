@@ -1,10 +1,10 @@
 import 'package:bank_app/entities/simple_user.dart';
 import 'package:bank_app/pages/home/home_page.dart';
 import 'package:bank_app/pages/home/transactions_page.dart';
+import 'package:bank_app/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:bank_app/services/auth.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -39,6 +39,17 @@ class _BodyState extends State<Body> {
 
   Widget loginButton() {
     FocusNode textSecondFocusNode = new FocusNode();
+
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.black87,
+      primary: Colors.grey[300],
+      minimumSize: Size(88, 36),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2)),
+      ),
+    );
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: Column(
@@ -108,7 +119,7 @@ class _BodyState extends State<Body> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        RaisedButton(
+                        ElevatedButton(
                           onPressed: () {
                             if (validate()) {
                               auth.signInWithEmailAndPassword(
@@ -124,12 +135,7 @@ class _BodyState extends State<Body> {
                                           )));
                             }
                           },
-                          color: Colors.black,
-                          highlightColor: Colors.white,
-                          elevation: 0,
-                          disabledElevation: 0,
-                          highlightElevation: 0,
-                          hoverElevation: 0,
+                          style: raisedButtonStyle,
                           child: Row(
                             children: <Widget>[
                               Row(
@@ -151,7 +157,7 @@ class _BodyState extends State<Body> {
                             ],
                           ),
                         ),
-                        RaisedButton(
+                        ElevatedButton(
                           onPressed: () {
                             if (validate()) {
                               auth.createUserWithEmailAndPassword(
@@ -166,12 +172,7 @@ class _BodyState extends State<Body> {
                                           )));
                             }
                           },
-                          color: Colors.black,
-                          highlightColor: Colors.white,
-                          elevation: 0,
-                          disabledElevation: 0,
-                          highlightElevation: 0,
-                          hoverElevation: 0,
+                          style: raisedButtonStyle,
                           child: Row(
                             children: <Widget>[
                               Row(
@@ -196,20 +197,17 @@ class _BodyState extends State<Body> {
                       ],
                     )
                   ]),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                   Text.rich(
                     TextSpan(
                       text: "Or ",
                     ),
                     style: TextStyle(fontSize: 12),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                  OutlineButton(
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  OutlinedButton(
                     onPressed: this.clickLoginGoogle,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(45)),
-                    splashColor: Colors.purple[800],
-                    borderSide: BorderSide(color: Colors.white),
+                    style: raisedButtonStyle,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: Row(
@@ -234,13 +232,10 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                  OutlineButton(
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  OutlinedButton(
                     onPressed: this.clickLoginFacebook,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(45)),
-                    splashColor: Colors.purple[800],
-                    borderSide: BorderSide(color: Colors.white),
+                    style: raisedButtonStyle,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                       child: Row(

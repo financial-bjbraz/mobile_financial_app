@@ -10,6 +10,16 @@ class MenuApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.black87,
+      primary: Colors.grey[300],
+      minimumSize: Size(88, 36),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2)),
+      ),
+    );
+
     return Positioned(
       top: top,
       left: 0,
@@ -105,18 +115,19 @@ class MenuApp extends StatelessWidget {
                               color: Colors.white54,
                             ),
                           ),
-                          child: RaisedButton(
-                            color: Colors.purple[800],
-                            highlightColor: Colors.transparent,
-                            elevation: 0,
-                            disabledElevation: 0,
-                            highlightElevation: 0,
-                            hoverElevation: 0,
+                          child: ElevatedButton(
+                            style: raisedButtonStyle,
+                            // color: Colors.purple[800],
+                            // highlightColor: Colors.transparent,
+                            // elevation: 0,
+                            // disabledElevation: 0,
+                            // highlightElevation: 0,
+                            // hoverElevation: 0,
                             onPressed: () {
                               logout(context);
                             },
-                            focusElevation: 0,
-                            splashColor: Colors.purple[900],
+                            // focusElevation: 0,
+                            // splashColor: Colors.purple[900],
                             child: Text(
                               "SAIR DO APP",
                               style: TextStyle(

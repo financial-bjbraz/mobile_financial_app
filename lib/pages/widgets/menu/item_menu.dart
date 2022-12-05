@@ -9,6 +9,17 @@ class ItemMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+      onPrimary: Colors.black87,
+      primary: Colors.grey[300],
+      minimumSize: Size(88, 36),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(2)),
+      ),
+      elevation: 0,
+    );
+
     return Container(
       height: 40,
       decoration: BoxDecoration(
@@ -23,13 +34,14 @@ class ItemMenu extends StatelessWidget {
           ),
         ),
       ),
-      child: RaisedButton(
-        color: Color(0x293145),
-        highlightColor: Colors.transparent,
-        elevation: 0,
-        disabledElevation: 0,
-        highlightElevation: 0,
-        hoverElevation: 0,
+      child: ElevatedButton(
+        style: raisedButtonStyle,
+        // color: Color(0x293145),
+        // highlightColor: Colors.transparent,
+        // elevation: 0,
+        // disabledElevation: 0,
+        // highlightElevation: 0,
+        // hoverElevation: 0,
         onPressed: () {},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

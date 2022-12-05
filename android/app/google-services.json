@@ -8,67 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:616349335993:android:3cf2b85de51477a5",
-        "android_client_info": {
-          "package_name": "app.incentivar"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "616349335993-bah146g9ctvhrqunj4jqmavf3uon9uoa.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.incentivar",
-            "certificate_hash": "83e59fb37827fe59b04cd27839d0834e7fc47ebc"
-          }
-        },
-        {
-          "client_id": "616349335993-kvgb2e492j86j35vt2ost71ica7qdu9g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.incentivar",
-            "certificate_hash": "458047d56a20140a98796c413a77383609903d5d"
-          }
-        },
-        {
-          "client_id": "616349335993-mm3r27suo76v37i4c5j4bhgif1oa5bcq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.incentivar",
-            "certificate_hash": "8b3c847cb1de9e02a85b46354178fce7d921b111"
-          }
-        },
-        {
-          "client_id": "616349335993-pcdpns2bqk4kq693cfdnc0s7c5mp48oo.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "app.incentivar",
-            "certificate_hash": "5297d7f4b9edb2a92c4aa2ef1c074f62b9f1f6a5"
-          }
-        },
-        {
-          "client_id": "616349335993-9k2d7g2rut4fmt4c3t3vhvib3j7i91gv.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDqwUO06kklHtE7UE_ifC5TmoVeTPawiY4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "616349335993-9k2d7g2rut4fmt4c3t3vhvib3j7i91gv.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:616349335993:android:4da2e324262bc3f364b668",
         "android_client_info": {
           "package_name": "br.com.bjbraz.bank_app"
@@ -76,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "616349335993-74iffivvqkc1ts7v8vodte61iamvvf08.apps.googleusercontent.com",
+          "client_id": "616349335993-kge7ibpif04etsk0j3uvhaa995r0lohs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.bjbraz.bank_app",
-            "certificate_hash": "a91097936f0105e2b5327e9685ad6e895a3a8240"
+            "certificate_hash": "7480943c27d151c555b2baf463d96b0281a45e9b"
           }
         },
         {
-          "client_id": "616349335993-7i1vqd03vt29eut6cbu1oq4jhdf2pps8.apps.googleusercontent.com",
+          "client_id": "616349335993-ouped5bae5t9coonmbjoilf6ke46ni74.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.bjbraz.bank_app",
-            "certificate_hash": "8b3c847cb1de9e02a85b46354178fce7d921b111"
+            "certificate_hash": "1e32e6e769fe54cde3b560d10fc2a81fa196f893"
           }
         },
         {
@@ -107,6 +46,13 @@
             {
               "client_id": "616349335993-9k2d7g2rut4fmt4c3t3vhvib3j7i91gv.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "616349335993-8mk3bcnke5od2ohk813ek154o4us0kh7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.bjbraz.bankApp"
+              }
             }
           ]
         }

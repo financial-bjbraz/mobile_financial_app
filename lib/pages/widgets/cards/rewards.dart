@@ -23,6 +23,17 @@ class _RewardsState extends State<Rewards> with AutomaticKeepAliveClientMixin {
   final SimpleUser user;
   var randon = Random();
 
+  final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
+    onPrimary: Colors.black87,
+    primary: Colors.grey[300],
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+    elevation: 0,
+  );
+
   _RewardsState(this.user);
 
   @override
@@ -61,20 +72,21 @@ class _RewardsState extends State<Rewards> with AutomaticKeepAliveClientMixin {
             decoration: BoxDecoration(
               border: Border.all(width: 0.7, color: const Color(0x293145)),
             ),
-            child: RaisedButton(
+            child: ElevatedButton(
               child: Text(
                 "ATIVE O SEU REWARDS " + (user.getBalance().toString()),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
               ),
-              textColor: _buttonPressed ? Colors.white : Colors.purple[800],
-              disabledTextColor: Colors.white,
-              highlightColor: Colors.purple[800],
-              onHighlightChanged: (pressed) {
-                setState(() {
-                  _buttonPressed = pressed;
-                });
-              },
-              color: Colors.transparent,
+              style: raisedButtonStyle,
+              // textColor: _buttonPressed ? Colors.white : Colors.purple[800],
+              // disabledTextColor: Colors.white,
+              // highlightColor: Colors.purple[800],
+              // onHighlightChanged: (pressed) {
+              //   setState(() {
+              //     _buttonPressed = pressed;
+              //   });
+              // },
+              // color: Colors.transparent,
               onPressed: () {
                 setState(() {
                   user.setBalances(1.0);
@@ -91,14 +103,14 @@ class _RewardsState extends State<Rewards> with AutomaticKeepAliveClientMixin {
                   // }
                 });
               },
-              elevation: 0,
-              disabledElevation: 0,
-              highlightElevation: 0,
-              focusElevation: 0,
-              hoverElevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(3),
-              ),
+              // elevation: 0,
+              // disabledElevation: 0,
+              // highlightElevation: 0,
+              // focusElevation: 0,
+              // hoverElevation: 0,
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(3),
+              // ),
             ),
           ),
         ],
