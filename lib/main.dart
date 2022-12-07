@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'firebase_options.dart';
 
@@ -18,7 +19,7 @@ Future<void> main() async {
       systemNavigationBarColor: const Color(0x293145),
     ),
   );
-  runApp(MyApp());
+  runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +32,11 @@ class MyApp extends StatelessWidget {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Bank App Style',
-        localizationsDelegates: [AppLocalizations.delegate],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate
+        ],
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
           scaffoldBackgroundColor: const Color(0x293145),
