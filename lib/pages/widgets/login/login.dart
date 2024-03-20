@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
     Firebase.initializeApp();
     return Container(
       child: Scaffold(
-        backgroundColor: const Color(0x293145),
+        backgroundColor: const Color.fromRGBO(41, 49, 69, 20),
         body: Body(),
       ),
     );
@@ -262,7 +262,7 @@ class _BodyState extends State<Body> {
                   ),
                 ],
               ),
-              color: Color(0x293145),
+              color: Color.fromRGBO(41, 49, 69, 20),
             ),
           ),
         ],

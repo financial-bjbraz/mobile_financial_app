@@ -1,5 +1,6 @@
 import 'package:bank_app/pages/splash/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -16,15 +17,21 @@ Future<void> main() async {
     SystemUiOverlayStyle(
       statusBarBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: const Color(0x293145),
+      systemNavigationBarColor: const Color(0x00293145),
     ),
   );
+  await FirebaseMessaging.instance.setAutoInitEnabled(true);
+
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+
+  print("=================================");
+  print(fcmToken);
+  print("=================================");
+
   runApp(MaterialApp(home: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(builder: (context, snapshot) {
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: AppLocalizations.supportedLocales,
         theme: ThemeData(
-          scaffoldBackgroundColor: const Color(0x293145),
+          scaffoldBackgroundColor: const Color.fromRGBO(41, 49, 69, 20),
           brightness: Brightness.dark,
         ),
         home: SplashPage(),

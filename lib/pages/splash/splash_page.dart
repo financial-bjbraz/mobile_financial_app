@@ -1,7 +1,5 @@
-import 'package:bank_app/pages/home/home_page.dart';
 import 'package:bank_app/pages/widgets/login/login.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashPage extends StatefulWidget {
   SplashPage({Key? key}) : super(key: key);
@@ -34,7 +32,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-          backgroundColor: Color(0x293145),
+          backgroundColor: Color.fromRGBO(41, 49, 69, 20),
           body: Center(
             child: Image.asset(
               "assets/images/bjbraz-logo.png",
